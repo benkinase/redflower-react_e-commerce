@@ -176,11 +176,25 @@ type Props = {
 };
 export const StyledLanding = styled(Box)<Props>`
   width: 100%;
-  min-height: 40vh;
-  background-color: var(--tertiary);
+  height: 500px;
   display: grid;
   grid-template-columns: ${(props) => props.GridType};
-  //gap: 20px;
+  place-items: center;
+  background-color: rgba(136, 146, 158, 0.8);
+
+  h2 {
+    font-size: clamp(1rem, -0.875rem + 8.333vw, 3.5rem);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+  }
+  .underline {
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+    background-color: var(--nice-red);
+    margin: 0.1rem auto;
+  }
 `;
 
 type LandingProps = {

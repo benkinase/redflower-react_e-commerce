@@ -8,9 +8,9 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { CARD_ELEMENT_OPTIONS } from "../../utils/checkout";
-//const card_string = process.env.REACT_APP_PUBLISHABLE_KEY;
-const PUBLISHABLE_KEY =
-  "pk_test_51IOdBIENNyF8krOvOfTQmAYOwPC1s5Qwep53vxXJTQ5rpZNgrI1WgjGm6RYyo6YGmZG0DQjPQZVp6akehQ65NbJQ002wE0M1lN";
+
+const PUBLISHABLE_KEY = process.env.REACT_APP_PUBLISHABLE_KEY;
+
 const stripePromise = loadStripe(PUBLISHABLE_KEY, {
   //stripeAccount: "{{CONNECTED_STRIPE_ACCOUNT_ID}}",
 });

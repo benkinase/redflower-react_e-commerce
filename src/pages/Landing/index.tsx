@@ -1,16 +1,18 @@
 import React from "react";
 import {
-  ImageContainer,
+  // ImageContainer,
   StyledLanding,
+  Wrapper,
 } from "../../components/Containers/Main";
-import { images } from "../../utils/images";
 
 export const LandingPage = () => {
   return (
-    <StyledLanding GridType='repeat(3,1fr)'>
-      {images.map((img, i) => {
-        return <ImageContainer src={img} alt='image' height='100%' key={i} />;
-      })}
+    <StyledLanding>
+      <Wrapper>
+        <div className='underline'></div>
+        <h2>welcome | redflower</h2>
+        <div className='underline'></div>
+      </Wrapper>
     </StyledLanding>
   );
 };
