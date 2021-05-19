@@ -1,13 +1,47 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond&family=Montserrat:wght@300&family=Poppins:wght@500&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css");
+
+:root {
+  --primary: #fffefe;
+  --secondary: #f8f8f8;
+  --tertiary: #1a3452;
+
+  --mainTransition: all 0.3s linear;
+  --mainSpacing: 2;
+  --mainShadow: 1px 5px 5px rgba(39, 37, 37, 0.6);
+  --lightShadow: 1px 5px 5px rgba(134, 133, 133, 0.6);
+
+  --nice-gray: #9c9c9c;
+  --nice-yellow: #f89009;
+  --nice-red: #f82525;
+  --nice-green: #5aaf0a;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  padding: 0;
+  margin: 0;
+  background: var(--primary);
+  color: var(--tertiary);
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-primary {
+  display: inline-block;
+  text-decoration: none;
+  letter-spacing: var(--mainSpacing);
+  color: var(--mainBlack);
+  background-color: var(--primary);
+  padding: 0.4rem 0.9rem;
+  border: 3px solid var(--primary);
+  transition: var(--mainTransition);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: transparent;
+  color: var(--primary);
 }

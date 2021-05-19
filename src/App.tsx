@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC, useEffect } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+import { Switch } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { MainLayout } from "./components";
+import { Navbar } from "./pages";
+import { routeComponents } from "./routeConfig";
+import { loadUser } from "./store/actions";
+import { ErrorFallback } from "./utils/validations";
 
-function App() {
+export const App: FC = () => {
+  const { token } = useSelector((state: any) => state.auth);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (token) {
+      dispatch(loadUser());
+    }
+  }, [token, dispatch]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <Navbar />
+      <MainLayout>
+        <Switch>{routeComponents}</Switch>
+      </MainLayout>
+    </ErrorBoundary>
   );
-}
-
-export default App;
+};
