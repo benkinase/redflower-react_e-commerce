@@ -23,7 +23,8 @@ export const NavbarContainer = styled.nav`
   z-index: 1;
 
   .nav-content {
-    margin: 0 20px;
+    width: 95%;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,14 +36,8 @@ export const NavbarContainer = styled.nav`
     cursor: pointer;
   }
   .home {
-    position: relative;
+    color: var(--nice-red);
   }
-  .fa-home {
-    position: absolute;
-    top: -13px;
-    right: 18px;
-  }
-
   .cart-link {
     position: relative;
   }
@@ -78,7 +73,7 @@ export const NavbarContainer = styled.nav`
     opacity: 0;
   }
 
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 750px) {
     .fa-bars {
       display: none;
     }
@@ -112,7 +107,7 @@ export const SidebarStyle = styled.div`
     padding: 5px;
     background: var(--secondary);
     min-height: 20vh;
-    top: 10px;
+    top: -50px;
     left: 25px;
     z-index: 5;
   }

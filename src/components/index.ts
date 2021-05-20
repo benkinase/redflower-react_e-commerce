@@ -29,6 +29,6 @@ export {
   AuthContainer,
   CheckoutContainer,
   ShippingContainer,
-  CategoryContainer,
+  ProductsResult,
 } from "./Containers";
 export { MainLayout } from "../pages/Layout";

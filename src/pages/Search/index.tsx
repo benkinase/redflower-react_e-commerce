@@ -8,6 +8,7 @@ import {
   ProductDashboard,
   StyledNavLink,
   Wrapper,
+  ProductsResult,
 } from "../../components";
 
 import { IProduct } from "../types";
@@ -18,20 +19,20 @@ export const SearchBar = () => {
   return (
     <form method='get' action='/search'>
       <SearchBarContainer>
-        <div className='control'>
+        <Wrapper className='control'>
           <Input
             type='text'
             className='search-input'
             placeholder='What are you looking for?'
             name='query'
           />
-        </div>
+        </Wrapper>
 
-        <div className='control'>
-          <button>
+        <Wrapper className='control'>
+          <button className='search__button'>
             <i className='fas fa-search'></i>
           </button>
-        </div>
+        </Wrapper>
       </SearchBarContainer>
     </form>
   );
@@ -85,7 +86,7 @@ export const Search = () => {
     );
   }
   return (
-    <Wrapper style={{ marginTop: "10rem" }}>
+    <ProductsResult>
       <h3>Search term: {query}</h3>
       <ProductDashboard>
         {products &&
@@ -93,6 +94,6 @@ export const Search = () => {
             return <Product product={product} key={product.id} />;
           })}
       </ProductDashboard>
-    </Wrapper>
+    </ProductsResult>
   );
 };

@@ -112,6 +112,8 @@ export const ProductDetail = styled(Box)`
     gap: 40px;
   }
 `;
-export const CategoryContainer = styled(Box)`
-  margin-top: 10rem;
+// products search/category
+export const ProductsResult = styled(Box)`
+  width: 90%;
+  margin: 10rem auto;
 `;

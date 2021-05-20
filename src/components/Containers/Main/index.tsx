@@ -30,23 +30,20 @@ export const SearchBarContainer = styled(Box)`
     transition: var(--mainTransition);
     font-size: 14px;
     border: 1px solid var(--nice-red);
-
-    &:focus {
-      border-bottom: 2px solid var(--nice-red);
-      transform: scale(1.08);
-    }
   }
-  button {
-    margin-left: 6px;
+
+  .search__button {
+    margin-right: 5px;
     padding: 4px 10px;
     border: none;
+    background-color: var(--secondary);
   }
 
   .fa-search {
     font-size: 20px;
     transition: var(--mainTransition);
     &:hover {
-      color: var(--nice-red);
+      color: var(--nice-green);
     }
   }
 `;
@@ -182,15 +179,15 @@ export const StyledLanding = styled(Box)<Props>`
   place-items: center;
   background-color: rgba(136, 146, 158, 0.8);
 
-  h2 {
+  h3 {
     font-size: clamp(1rem, -0.875rem + 8.333vw, 3.5rem);
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-weight: bold;
+    padding-top: 4px;
   }
   .underline {
     width: 100%;
-    height: 5px;
+    height: 4px;
     border-radius: 5px;
     background-color: var(--nice-red);
     margin: 0.1rem auto;

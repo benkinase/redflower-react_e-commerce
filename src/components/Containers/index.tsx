@@ -8,7 +8,7 @@ export {
   ProductDashboard,
   ProductContainer,
   ProductDetail,
-  CategoryContainer,
+  ProductsResult,
 } from "./Products";
 export {
   Wrapper,

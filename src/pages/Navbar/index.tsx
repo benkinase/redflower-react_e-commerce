@@ -37,10 +37,7 @@ export function Navbar() {
         <Wrapper className='nav-content'>
           <Wrapper>
             <StyledNavLink color='var(--tertiaryColor)' to='/'>
-              <span className='home'>
-                HomE
-                <i className='fas fa-home'></i>
-              </span>
+              <span className='home'>Redflower</span>
             </StyledNavLink>
           </Wrapper>
           <Wrapper>
@@ -116,7 +113,7 @@ const Sidebar: FC<SideBarProps> = ({ isOpen, state, close }) => {
               radius='20px'
               to='/old'
             >
-              Old
+              <span onClick={close}>Old</span>
             </StyledNavLink>
             <StyledNavLink
               border='1px solid var(--nice-red)'
@@ -124,7 +121,7 @@ const Sidebar: FC<SideBarProps> = ({ isOpen, state, close }) => {
               radius='20px'
               to='/new'
             >
-              New
+              <span onClick={close}>New</span>
             </StyledNavLink>
           </Wrapper>
           <Wrapper className='links'>
@@ -134,7 +131,7 @@ const Sidebar: FC<SideBarProps> = ({ isOpen, state, close }) => {
               radius='20px'
               to='/auth'
             >
-              Login
+              <span onClick={close}>Login</span>
             </StyledNavLink>
             <StyledNavLink
               border='1px solid var(--nice-red)'
@@ -142,13 +139,15 @@ const Sidebar: FC<SideBarProps> = ({ isOpen, state, close }) => {
               radius='20px'
               to='/profile'
             >
-              Account
+              <span onClick={close}>Account</span>
             </StyledNavLink>
           </Wrapper>
           <Wrapper>
             <StyledNavLink to='/cart' className='cart-link'>
               <i className='fas fa-shopping-cart'></i>
-              <Span className='cart-value'>{state?.length}</Span>
+              <Span className='cart-value' onClick={close}>
+                {state?.length}
+              </Span>
             </StyledNavLink>
           </Wrapper>
         </GridContainer>

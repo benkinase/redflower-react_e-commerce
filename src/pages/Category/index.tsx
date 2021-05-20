@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { ProductDashboard, Wrapper, CategoryContainer } from "../../components";
+import { ProductDashboard, Wrapper, ProductsResult } from "../../components";
 import { Product } from "../Product";
 import { CategoriesParams, IProduct } from "../types";
 import { fetchCategories } from "../../store/actions";
@@ -16,7 +16,7 @@ export const Category = () => {
   }, [cat_slug, dispatch]);
 
   return (
-    <CategoryContainer>
+    <ProductsResult>
       <Wrapper className='page__category'>
         <Wrapper className='category__header'>
           <h3 className='category__name'>Category: {name}</h3>
@@ -28,6 +28,6 @@ export const Category = () => {
             })}
         </ProductDashboard>
       </Wrapper>
-    </CategoryContainer>
+    </ProductsResult>
   );
 };

@@ -10,7 +10,7 @@ export const LandingPage = () => {
     <StyledLanding>
       <Wrapper>
         <div className='underline'></div>
-        <h2>welcome | redflower</h2>
+        <h3>welcome | redflower</h3>
         <div className='underline'></div>
       </Wrapper>
     </StyledLanding>
