@@ -111,7 +111,7 @@ export const Auth: FC = () => {
                 name='password2'
                 placeholder='Repeat Password'
                 onChange={handleChange}
-                type='password'
+                type={showPassword ? "text" : "password"}
               />
               <i className='fa fa-eye' onClick={handleShowPassword}></i>
             </Wrapper>

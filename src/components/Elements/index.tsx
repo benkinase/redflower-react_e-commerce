@@ -103,6 +103,7 @@ export const Input = styled.input.attrs(({ type }) => ({
   display: flex;
   margin: 1.5vh 0;
   padding: 5px;
+  letter-spacing: 2px;
 
   &:focus {
     outline: none;

@@ -1,16 +1,17 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-const Box = styled("div")``;
+export const Box = styled("div")``;
+
 export const StyledProducts = styled(Box)`
   margin: 50px auto;
-  width: 100%;
+  grid-template-rows: auto;
+  width: 90%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 350px));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
-  place-content: center;
   background-color: #f8f8f8;
-  padding: 30px 0;
+  padding: 30px;
 `;
 
 type ProductsProps = {
@@ -20,37 +21,14 @@ export const ProductDashboard: FC<ProductsProps> = ({ children }) => {
   return <StyledProducts>{children}</StyledProducts>;
 };
 
-// modify Material UI Card
-export const StyledProduct = styled(Box)`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: var(--mainTransition);
-  cursor: pointer;
-  &&:hover {
-    opacity: 0.85;
-    box-shadow: var(--mainShadow);
-  }
-  .value {
-    font-size: 14px;
-  }
-
-  @media (max-width: 700px) {
-    .value: {
-      font-size: 12px;
-    }
-  } ;
-`;
 // a product container
 export const ProductContainer = styled(Box)`
   background: var(--secondary);
-  cursor: pointer;
   box-shadow: var(--mainShadow);
   transition: var(--mainTransition);
-  padding-bottom: 15px;
 
+  padding-bottom: 15px;
+  cursor: pointer;
   .name-price {
     margin: 15px;
     display: flex;
@@ -116,4 +94,28 @@ export const ProductDetail = styled(Box)`
 export const ProductsResult = styled(Box)`
   width: 90%;
   margin: 10rem auto;
+`;
+
+// modify Material UI Card
+export const StyledProduct = styled(Box)`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: var(--mainTransition);
+  cursor: pointer;
+  &&:hover {
+    opacity: 0.85;
+    box-shadow: var(--mainShadow);
+  }
+  .value {
+    font-size: 14px;
+  }
+
+  @media (max-width: 700px) {
+    .value: {
+      font-size: 12px;
+    }
+  } ;
 `;

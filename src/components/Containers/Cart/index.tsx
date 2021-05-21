@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const CartContainer = styled.div`
   width: 90%;
   margin: 10rem auto;
+  .table__container,
+  .table {
+    width: 100%;
+  }
   strong {
     font-weight: 800;
     font-size: 16px;

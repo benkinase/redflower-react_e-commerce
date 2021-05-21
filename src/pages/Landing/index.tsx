@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  // ImageContainer,
+  ImageContainer,
   StyledLanding,
   Wrapper,
 } from "../../components/Containers/Main";
@@ -11,6 +11,7 @@ export const LandingPage = () => {
       <Wrapper>
         <div className='underline'></div>
         <h3>welcome | redflower</h3>
+
         <div className='underline'></div>
       </Wrapper>
     </StyledLanding>

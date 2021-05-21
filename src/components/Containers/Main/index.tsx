@@ -172,12 +172,17 @@ type Props = {
   GridType?: string;
 };
 export const StyledLanding = styled(Box)<Props>`
+  .landing {
+    background-color: #e24d4d;
+    background: url("./utils/landing_photo.jpg") center/cover no-repeat;
+  }
+
   width: 100%;
   height: 500px;
   display: grid;
   grid-template-columns: ${(props) => props.GridType};
   place-items: center;
-  background-color: rgba(136, 146, 158, 0.8);
+  background-color: rgba(136, 146, 158, 0.5);
 
   h3 {
     font-size: clamp(1rem, -0.875rem + 8.333vw, 3.5rem);

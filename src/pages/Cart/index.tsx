@@ -31,7 +31,7 @@ export const Cart = () => {
           <h2 className='title'>Cart</h2>
         </Wrapper>
 
-        <Wrapper className='box'>
+        <Wrapper className='table__container'>
           <table className='table'>
             <thead>
               <tr>

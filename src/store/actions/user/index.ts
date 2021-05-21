@@ -23,7 +23,7 @@ export const login = (user: User) => async (dispatch: any) => {
   dispatch({ type: Action.LOGIN_REQUEST, payload: user });
   try {
     const { data } = await axiosAPI2.post("/api/v1/token/login/", user);
-    console.log(data);
+
     dispatch({ type: Action.LOGIN_SUCCESS, payload: data });
     localStorage.setItem("token", JSON.stringify(data.auth_token));
   } catch (error) {
