@@ -9,7 +9,6 @@ import {
   StyledNavLink,
   Rounded,
   StyledModal,
-  GridContainer,
 } from "../../components";
 import { SearchBar } from "../Search";
 import { ICart } from "../types";
@@ -34,55 +33,58 @@ export function Navbar() {
     <>
       <Sidebar isOpen={isOpen} close={close} state={state} />
       <NavbarContainer>
-        <Wrapper className='nav-content'>
-          <Wrapper>
-            <StyledNavLink color='var(--tertiaryColor)' to='/'>
-              <span className='home'>RedfloweR</span>
-            </StyledNavLink>
-          </Wrapper>
-          <Wrapper>
-            <SearchBar />
-          </Wrapper>
+        <Wrapper className='navbar'>
+          <Wrapper className='nav__center'>
+            <Wrapper className='nav__header'>
+              <Wrapper>
+                <StyledNavLink color='var(--tertiary)' to='/'>
+                  <span className='home'>RedfloweR</span>
+                </StyledNavLink>
+              </Wrapper>
+              <Wrapper>
+                <SearchBar />
+              </Wrapper>
 
-          <Wrapper>
-            <i className='fas fa-bars' onClick={toggleBar}></i>
-          </Wrapper>
-
-          <Wrapper className='large-screen'>
-            <StyledNavLink to='/cart' className='cart-link'>
-              <i className='fas fa-shopping-cart'></i>
-              <Span className='cart-value'>{state?.length}</Span>
-            </StyledNavLink>
-            <Rounded
-              border='1px solid var(--nice-red)'
-              color='var(--tertiaryColor)'
-              radius='20px'
-              onClick={() => toggleModal()}
-            >
-              Categories
-            </Rounded>
-
-            {isModal && <ModalCategories toggleModal={toggleModal} />}
-            {!token && (
-              <StyledNavLink
-                border='1px solid var(--nice-red)'
-                color='var(--tertiaryColor)'
-                radius='20px'
-                to='/auth'
-              >
-                Login
+              <Wrapper>
+                <i className='fas fa-bars' onClick={toggleBar}></i>
+              </Wrapper>
+            </Wrapper>
+            <Wrapper className='only_large_screen'>
+              <StyledNavLink to='/cart' className='cart-link'>
+                <i className='fas fa-shopping-cart'></i>
+                <Span className='cart-value'>{state?.length}</Span>
               </StyledNavLink>
-            )}
-            {token && (
-              <StyledNavLink
+              <Rounded
                 border='1px solid var(--nice-red)'
-                color='var(--tertiaryColor)'
+                color='var(--tertiary)'
                 radius='20px'
-                to='/profile'
+                onClick={() => toggleModal()}
               >
-                Account
-              </StyledNavLink>
-            )}
+                Categories
+              </Rounded>
+
+              {isModal && <ModalCategories toggleModal={toggleModal} />}
+              {!token && (
+                <StyledNavLink
+                  border='1px solid var(--nice-red)'
+                  color='var(--tertiary)'
+                  radius='20px'
+                  to='/auth'
+                >
+                  Login
+                </StyledNavLink>
+              )}
+              {token && (
+                <StyledNavLink
+                  border='1px solid var(--nice-red)'
+                  color='var(--tertiary)'
+                  radius='20px'
+                  to='/profile'
+                >
+                  Account
+                </StyledNavLink>
+              )}
+            </Wrapper>
           </Wrapper>
         </Wrapper>
       </NavbarContainer>
@@ -105,52 +107,50 @@ const Sidebar: FC<SideBarProps> = ({ isOpen, state, close }) => {
     <SidebarContainer>
       <Wrapper className={drawClass}>
         <i className='fas fa-times side-fa-times' onClick={close}></i>
-        <GridContainer gCols='repeat(2,1fr)'>
-          <Wrapper className='links'>
-            <StyledNavLink
-              border='1px solid var(--nice-red)'
-              color='var(--tertiary)'
-              radius='20px'
-              to='/old'
-            >
-              <span onClick={close}>Old</span>
-            </StyledNavLink>
-            <StyledNavLink
-              border='1px solid var(--nice-red)'
-              color='var(--tertiary)'
-              radius='20px'
-              to='/new'
-            >
-              <span onClick={close}>New</span>
-            </StyledNavLink>
-          </Wrapper>
-          <Wrapper className='links'>
-            <StyledNavLink
-              border='1px solid var(--nice-red)'
-              color='var(--tertiary)'
-              radius='20px'
-              to='/auth'
-            >
-              <span onClick={close}>Login</span>
-            </StyledNavLink>
-            <StyledNavLink
-              border='1px solid var(--nice-red)'
-              color='var(--tertiary)'
-              radius='20px'
-              to='/profile'
-            >
-              <span onClick={close}>Account</span>
-            </StyledNavLink>
-          </Wrapper>
-          <Wrapper>
-            <StyledNavLink to='/cart' className='cart-link'>
-              <i className='fas fa-shopping-cart'></i>
-              <Span className='cart-value' onClick={close}>
-                {state?.length}
-              </Span>
-            </StyledNavLink>
-          </Wrapper>
-        </GridContainer>
+        <Wrapper className='links'>
+          <StyledNavLink
+            border='1px solid var(--nice-red)'
+            color='var(--tertiary)'
+            margin='10px 0px'
+            to='/old'
+          >
+            <span onClick={close}>Old Fashion</span>
+          </StyledNavLink>
+
+          <StyledNavLink
+            border='1px solid var(--nice-red)'
+            color='var(--tertiary)'
+            margin='10px 0px'
+            to='/new'
+          >
+            <span onClick={close}>New Fashion</span>
+          </StyledNavLink>
+
+          <StyledNavLink
+            border='1px solid var(--nice-red)'
+            color='var(--tertiary)'
+            margin='10px 0px'
+            to='/auth'
+          >
+            <span onClick={close}>Login</span>
+          </StyledNavLink>
+
+          <StyledNavLink
+            border='1px solid var(--nice-red)'
+            color='var(--tertiary)'
+            margin='10px 0px'
+            to='/profile'
+          >
+            <span onClick={close}>Account</span>
+          </StyledNavLink>
+
+          <StyledNavLink to='/cart' className='cart-link'>
+            <i className='fas fa-shopping-cart'></i>
+            <Span className='cart-value' onClick={close}>
+              {state?.length}
+            </Span>
+          </StyledNavLink>
+        </Wrapper>
       </Wrapper>
     </SidebarContainer>
   );
@@ -169,27 +169,26 @@ export const ModalCategories: React.FC<ModalProps> = ({
 }) => {
   return (
     <StyledModal>
-      <Wrapper className='modal-container'>
-        <StyledNavLink
-          to={"/new"}
-          color='var(--tertiary)'
-          bg='var(--primary)'
-          radius='20px'
-          border='1px solid var(--nice-red)'
-        >
-          <Span onClick={() => toggleModal()}>New</Span>
-        </StyledNavLink>
-        <StyledNavLink
-          to={"/old"}
-          color='var(--tertiary)'
-          bg='var(--primary)'
-          radius='20px'
-          border='1px solid var(--nice-red)'
-        >
-          <Span onClick={() => toggleModal()}>Old</Span>
-        </StyledNavLink>
-        {children}
-      </Wrapper>
+      <StyledNavLink
+        to={"/new"}
+        color='var(--tertiary)'
+        bg='var(--primary)'
+        radius='20px'
+        margin='10px 0px'
+        border='1px solid var(--nice-red)'
+      >
+        <Span onClick={() => toggleModal()}>New Fashion</Span>
+      </StyledNavLink>
+      <StyledNavLink
+        to={"/old"}
+        color='var(--tertiary)'
+        bg='var(--primary)'
+        radius='20px'
+        border='1px solid var(--nice-red)'
+      >
+        <Span onClick={() => toggleModal()}>Old Fashion</Span>
+      </StyledNavLink>
+      {children}
     </StyledModal>
   );
 };

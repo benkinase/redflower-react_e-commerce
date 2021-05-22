@@ -39,7 +39,7 @@ export const Cart = () => {
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Total</th>
-                <th>Remove</th>
+                <th></th>
               </tr>
             </thead>
 
@@ -66,24 +66,28 @@ export const Cart = () => {
           </Paragraph>
 
           <Divider />
-          <Wrapper>
-            {cartItems?.length > 0 && (
-              <Wrapper className='cart__buttons__container'>
-                <StyledNavLink to='/cart/checkout'>
-                  <Button uppercase='uppercase' bg='var(--nice-yellow)'>
-                    proceed to checkout
-                  </Button>
-                </StyledNavLink>
+
+          {cartItems?.length > 0 && (
+            <Wrapper className='cart__buttons__container'>
+              <Button
+                uppercase='uppercase'
+                bg='var(--nice-yellow)'
+                width='50%'
+                onClick={handleClearCart}
+              >
+                clear cart
+              </Button>
+              <StyledNavLink to='/cart/checkout'>
                 <Button
                   uppercase='uppercase'
+                  width='50%'
                   bg='var(--nice-yellow)'
-                  onClick={handleClearCart}
                 >
-                  clear cart
+                  proceed to checkout
                 </Button>
-              </Wrapper>
-            )}
-          </Wrapper>
+              </StyledNavLink>
+            </Wrapper>
+          )}
         </Wrapper>
       </Wrapper>
     </CartContainer>

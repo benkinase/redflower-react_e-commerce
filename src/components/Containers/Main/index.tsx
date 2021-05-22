@@ -18,7 +18,7 @@ export const Wrapper = styled(Box)<WrapperProps>`
 // app root container
 export const MainContainer = styled(Box)`
   margin: 5rem auto;
-  max-width: 1170px;
+  width: 100vw;
   margin: auto;
   position: relative;
 `;
@@ -33,8 +33,7 @@ export const SearchBarContainer = styled(Box)`
     border: 1px solid var(--nice-red);
   }
   .search__button {
-    margin-right: 5px;
-    padding: 4px 10px;
+    padding: 5px 10px;
     border: none;
   }
 
@@ -94,7 +93,7 @@ export const FlexContainer = styled(Box)<FlexProps>`
 const ContainerBanner = styled(Box)`
   margin: 10rem auto;
   display: grid;
-
+  width: 100%;
   .banner {
     margin: 5rem auto;
     width: 80%;
@@ -171,7 +170,7 @@ type Props = {
   GridType?: string;
 };
 export const StyledLanding = styled(Box)<Props>`
-  width: 100%;
+  width: 100vw;
   height: 500px;
   display: grid;
   grid-template-columns: ${(props) => props.GridType};

@@ -9,13 +9,14 @@
 
   --mainTransition: all 0.3s linear;
   --mainSpacing: 2;
-  --mainShadow: 1px 5px 5px rgba(39, 37, 37, 0.6);
-  --lightShadow: 1px 5px 5px rgba(134, 133, 133, 0.6);
+  --mainShadow: 2px 2px 7px 2px rgba(39, 37, 37, 0.6);
+  --lightShadow: 1px 5px 5px 2px rgba(134, 133, 133, 0.6);
 
   --nice-gray: rgb(136, 146, 158);
   --nice-yellow: #f89009;
   --nice-red: #f82525;
   --nice-green: #5aaf0a;
+  --landing-gray: #686767;
 }
 
 body {
@@ -26,6 +27,7 @@ body {
   position: relative;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
+
   -webkit-font-smoothing: antialiased;
 }
 
@@ -48,7 +50,7 @@ body {
 .landing__page {
   width: 100%;
   height: 100%;
-  background-color: #686767;
+  background-color: var(--landing-gray);
   background-image: url("./utils/landing_photo.jpg");
   background-blend-mode: multiply;
   background-size: cover;

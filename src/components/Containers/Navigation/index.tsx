@@ -14,29 +14,36 @@ const show = keyframes`
 `;
 
 export const NavbarContainer = styled.nav`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  margin-bottom: 3rem;
-  background: var(--secondary);
-  z-index: 1;
-
-  .nav-content {
-    width: 95%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    padding: 10px 0;
-    color: var(--tertiary);
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    margin-bottom: 3rem;
+    padding: 0.75rem 2rem;
+    background: var(--secondary);
+    z-index: 1;
   }
+
+  .nav__header {
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 2.5fr 1fr;
+    column-gap: 10px;
+    position: replative;
+  }
+
   .home {
     color: var(--nice-red);
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .fa-bars {
+    font-size: 40px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
   }
   .cart-link {
     position: relative;
@@ -58,17 +65,11 @@ export const NavbarContainer = styled.nav`
     font-size: 15px;
     font-weight: bold;
     &:hover {
-      opacity: 0.68;
+      opacity: 0.7;
     }
   }
 
-  .fa-bars {
-    font-size: 30px;
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-  .large-screen {
+  .only_large_screen {
     display: none;
     opacity: 0;
   }
@@ -77,14 +78,21 @@ export const NavbarContainer = styled.nav`
     .fa-bars {
       display: none;
     }
-    .large-screen {
+    .nav__center {
+      min-width: 100vw;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .only_large_screen {
       right: 20px;
       display: flex;
       animation-name: ${show};
       animation-duration: 1s;
       animation-fill-mode: forwards;
     }
-    .large-screen p {
+    .only_large_screen {
       padding-left: 5px;
       letter-spacing: 1.2px;
     }
@@ -97,22 +105,26 @@ type SideContainerProps = {
 };
 export const SidebarStyle = styled.div`
   .sidebar {
-    position: absolute;
+    position: fixed;
     color: var(--tertiary);
-    box-shadow: var(--mainShadow);
     transition: all 0.3s 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-    transform: translateY(-40rem);
-    width: 90%;
+    transform: translateX(-40rem);
+    width: 100%;
     margin: auto;
     padding: 5px;
     background: var(--secondary);
-    min-height: 20vh;
-    top: -50px;
-    left: 25px;
+    min-height: 50vh;
+    left: 0px;
+    top: 90px;
     z-index: 5;
+    box-shadow: var(--mainShadow);
   }
   .links {
-    margin-top: 2rem;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    padding-botton: 5px;
+    width: 60%;
   }
   .show {
     transform: translateY(0);
@@ -129,6 +141,7 @@ export const SidebarStyle = styled.div`
     right: 5px;
     bottom: 5px;
     cursor: pointer;
+    font-size: 35px;
     transition: var(--mainTransition);
     &:hover {
       color: var(--nice-red);
@@ -136,7 +149,7 @@ export const SidebarStyle = styled.div`
   }
   .cart-link {
     position: relative;
-    margin-top: 50px;
+    margin-top: 20px;
     .fa-shopping-cart {
       color: var(--nice-yellow);
       font-size: 30px;
@@ -144,11 +157,10 @@ export const SidebarStyle = styled.div`
     .cart-value {
       position: absolute;
       top: -8px;
-      right: 24px;
-      font-weight: bold;
+      font-weight: 800;
     }
   }
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 750px) {
     transform: translateY(-40rem);
     .fas-bars {
       display: none;
@@ -165,21 +177,18 @@ export const StyledModal = styled.div`
   position: fixed;
   z-index: 100;
   top: 3%;
-  left: 55%;
+  left: 45%;
   width: 300px;
-  min-height: 100px;
-  background-color: var(--nice-gray);
+  background: var(--secondary);
+  border: 1px solid var(--nice-red);
   border-radius: 2px;
-  box-shadow: var(--lightShadow);
-  display: table;
-  transition: opacity 0.3s ease;
-  width: 300px;
-  min-height: 100px;
-  padding: 20px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 20px;
   border-radius: 2px;
   transition: all 0.3s ease;
 
-  @media screen and(max-width:700px) {
+  @media screen and(max-width:750px) {
     top: 18%;
     left: 50%;
     width: 200px;

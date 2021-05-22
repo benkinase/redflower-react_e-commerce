@@ -12,7 +12,18 @@ export const CartContainer = styled.div`
     font-size: 16px;
   }
   .cart__buttons__container {
+    width: 80%;
     margin: 20px auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+  @media screen and (min-width: 780px) {
+    .cart__buttons__container {
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+    }
   }
 `;
 export const CartItemContainer = styled.tr`

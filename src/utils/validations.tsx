@@ -33,7 +33,7 @@ export const newUserSchema = yup.object().shape({
     .string()
     .min(2, "Too Short!")
     .max(40, "Too Long!")
-    .required("Username is Required")
+    .required("Username is required")
     .label("Username"),
   email: yup.string().email("Invalid email").required("Email is required"),
   password: yup
@@ -49,11 +49,11 @@ export const newUserSchema = yup.object().shape({
     .required("Password is required"),
   password2: yup
     .string()
-    //.oneOf([yup.ref("password")], "Passwords do not match")
-    .required("Confirm password is required")
-    .test("password-match", "Password musth match", function (value) {
-      return this.parent.password === value;
-    }),
+    .oneOf([yup.ref("password")], "Passwords do not match")
+    .required("Confirm password is required"),
+  // .test("password-match", "Password musth match", function (value) {
+  //   return this.parent.password === value;
+  // }),
 });
 
 export const checkoutValid = () => {

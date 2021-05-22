@@ -66,6 +66,7 @@ export const Rounded = styled.button<RoundedProps>`
   border-radius: ${(props) => props.radius};
   background-color: ${(props) => props.bg};
   border: ${(props) => props.border};
+  letter-spacing: 2px;
   &:hover {
     color: var(--tertiary);
     opacity: 0.8;
@@ -83,15 +84,18 @@ interface NavLinkProps {
   radius?: string;
   border?: string;
   padding?: string;
+  margin?: string;
 }
 export const StyledNavLink = styled(NavLink)<NavLinkProps>`
   text-decoration: none;
-  padding: ${(props) => (props.padding ? props.padding : "3px 15px;")};
-  margin: 0 10px;
+  padding: ${(props) => (props.padding ? props.padding : "3px 15px")};
+  margin: ${(props) => props.margin && props.margin};
   color: ${(props) => (props.color ? props.color : "var(--tertiary)")};
   border-radius: ${(props) => props.radius};
   background-color: ${(props) => props.bg};
   border: ${(props) => props.border};
+  width: ${(props) => props.width};
+  text-align: center;
   letter-spacing: 2px;
   &:hover {
     color: var(--tertiary);
