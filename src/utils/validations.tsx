@@ -19,12 +19,12 @@ export const userSchema = yup.object().shape({
     .string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
-    .required("Username is Required")
+    .required("Username is missing")
     .label("Username"),
   password: yup
     .string()
     .min(8, ({ min }) => `Password must be at least ${min} characters`)
-    .required("Password is required")
+    .required("Password is missing")
     .label("Password"),
 });
 

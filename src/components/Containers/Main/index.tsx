@@ -223,8 +223,7 @@ export const AuthContainer = styled(Box)`
   margin: 10rem auto;
   padding: 20px;
 
-  & .user__form,
-  h2 {
+  & .user__form__wrapper {
     width: 80%;
     margin: auto;
   }
@@ -233,7 +232,7 @@ export const AuthContainer = styled(Box)`
     & i {
       position: absolute;
       right: 10px;
-      top: 30%;
+      top: 25%;
       transition: var(--mainTransition);
       cursor: pointer;
       &:hover {
@@ -244,8 +243,8 @@ export const AuthContainer = styled(Box)`
   button {
     margin: 5px 0;
   }
-  @media screen and (min-width: 780px) {
-    .user__form,
+  @media screen and (min-width: 750px) {
+    .user__form__wrapper,
     h2 {
       width: 50%;
     }
