@@ -37,7 +37,7 @@ export function Navbar() {
         <Wrapper className='nav-content'>
           <Wrapper>
             <StyledNavLink color='var(--tertiaryColor)' to='/'>
-              <span className='home'>Redflower</span>
+              <span className='home'>RedfloweR</span>
             </StyledNavLink>
           </Wrapper>
           <Wrapper>

@@ -33,7 +33,7 @@ export const Profile = () => {
     }, 0);
   }
   if (loading) {
-    return <CustomContainer title={loading} />;
+    return <CustomContainer title='orders loading' />;
   }
   if (error) {
     return (
@@ -44,9 +44,7 @@ export const Profile = () => {
       </CustomContainer>
     );
   }
-  if (orders?.length < 1) {
-    return <CustomContainer title='No orders found!' />;
-  }
+
   return (
     <ProfileContainer>
       <Wrapper className='profile'>
@@ -72,6 +70,7 @@ export const Profile = () => {
         <Wrapper className='profile-orders'>
           <h3 className='subtitle'>My orders{getOrderLength(orders)}</h3>
           <Divider />
+          {orders?.length < 1 && <CustomContainer title='No orders found!' />}
           {orders?.map((order: any) => {
             return <Order order={order} key={order.id} />;
           })}

@@ -45,3 +45,16 @@ body {
   background: transparent;
   color: var(--primary);
 }
+.landing__page {
+  width: 100%;
+  height: 100%;
+  background-color: #686767;
+  background-image: url("./utils/landing_photo.jpg");
+  background-blend-mode: multiply;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-bottom: 30px;
+  display: grid;
+  place-items: center;
+}

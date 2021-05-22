@@ -66,21 +66,3 @@ export const logoutUser = () => (dispatch: any) => {
     });
   }
 };
-
-// Setup config/headers and token
-export const tokenConfig = (getState: any) => {
-  // Get token from auth state
-  const token = getState().auth.token;
-  const config = {
-    headers: {
-      "Content-type": "application/json",
-      Authorization: "",
-    },
-  };
-  // If token, add to headers
-  if (token) {
-    config.headers.Authorization = `Token ${token}`;
-  }
-
-  return config;
-};

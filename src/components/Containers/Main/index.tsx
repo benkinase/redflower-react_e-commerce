@@ -22,6 +22,7 @@ export const MainContainer = styled(Box)`
   margin: auto;
   position: relative;
 `;
+
 // search
 export const SearchBarContainer = styled(Box)`
   display: flex;
@@ -31,19 +32,17 @@ export const SearchBarContainer = styled(Box)`
     font-size: 14px;
     border: 1px solid var(--nice-red);
   }
-
   .search__button {
     margin-right: 5px;
     padding: 4px 10px;
     border: none;
-    background-color: var(--secondary);
   }
 
   .fa-search {
     font-size: 20px;
     transition: var(--mainTransition);
     &:hover {
-      color: var(--nice-green);
+      color: var(--nice-red);
     }
   }
 `;
@@ -172,23 +171,18 @@ type Props = {
   GridType?: string;
 };
 export const StyledLanding = styled(Box)<Props>`
-  .landing {
-    background-color: #e24d4d;
-    background: url("./utils/landing_photo.jpg") center/cover no-repeat;
-  }
-
   width: 100%;
   height: 500px;
   display: grid;
   grid-template-columns: ${(props) => props.GridType};
   place-items: center;
-  background-color: rgba(136, 146, 158, 0.5);
 
   h3 {
     font-size: clamp(1rem, -0.875rem + 8.333vw, 3.5rem);
     text-transform: uppercase;
     letter-spacing: 2px;
     padding-top: 4px;
+    color: var(--nice-red);
   }
   .underline {
     width: 100%;
@@ -209,7 +203,7 @@ type LandingProps = {
 export const Landing: FC<LandingProps> = ({ title, subtitle, children }) => {
   return (
     <StyledLanding>
-      <Wrapper className='landing'>
+      <Wrapper>
         <Paragraph>{title}</Paragraph>
         <div />
         <Paragraph>{subtitle}</Paragraph>

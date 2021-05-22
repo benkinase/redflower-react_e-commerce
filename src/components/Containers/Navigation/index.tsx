@@ -81,7 +81,7 @@ export const NavbarContainer = styled.nav`
       right: 20px;
       display: flex;
       animation-name: ${show};
-      animation-duration: 3s;
+      animation-duration: 1s;
       animation-fill-mode: forwards;
     }
     .large-screen p {

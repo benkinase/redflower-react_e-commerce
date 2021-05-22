@@ -23,12 +23,12 @@ export const SearchBar = () => {
           <Input
             type='text'
             className='search-input'
-            placeholder='What are you looking for?'
+            placeholder='Product search term'
             name='query'
           />
         </Wrapper>
 
-        <Wrapper className='control'>
+        <Wrapper className='control__search'>
           <button className='search__button'>
             <i className='fas fa-search'></i>
           </button>
@@ -53,9 +53,7 @@ export const Search = () => {
     if (!currentQuery) setLocalError("Empty query");
     if (currentQuery) {
       setQuery(currentQuery);
-      setTimeout(() => {
-        dispatch(fetchSearchProducts(currentQuery));
-      }, 500);
+      dispatch(fetchSearchProducts(currentQuery));
     }
   }, [dispatch]);
 
@@ -70,7 +68,7 @@ export const Search = () => {
     );
   }
   if (loading) {
-    return <CustomContainer title={loading} />;
+    return <CustomContainer title='Products loading' />;
   }
   if (error) {
     return <CustomContainer title={error} />;

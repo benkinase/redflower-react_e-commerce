@@ -20,6 +20,7 @@ export function ProductDetails() {
   const { cat_slug, prod_slug } = useParams<DetailsParams>();
   // get fetched product from state
   const { product } = useSelector((state: any) => state.product);
+  const [currentItem, setItem] = useState<ICart | {}>(product);
   const [variants, setVariants] = useState<{ color: string; size: string }>({
     color: "",
     size: "",
@@ -35,6 +36,8 @@ export function ProductDetails() {
 
   // add to cart
   const handleAddToCart = (item: ICart) => {
+    setItem({ ...item, color: variants.color });
+    console.log(item, currentItem);
     dispatch(addToCart(item));
   };
   const colors = ["red", "grey", "green", "blue"];

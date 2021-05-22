@@ -49,8 +49,11 @@ export const newUserSchema = yup.object().shape({
     .required("Password is required"),
   password2: yup
     .string()
-    .oneOf([yup.ref("password")], "Passwords do not match")
-    .required("Confirm password is required"),
+    //.oneOf([yup.ref("password")], "Passwords do not match")
+    .required("Confirm password is required")
+    .test("password-match", "Password musth match", function (value) {
+      return this.parent.password === value;
+    }),
 });
 
 export const checkoutValid = () => {

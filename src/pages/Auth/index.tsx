@@ -6,6 +6,7 @@ import { Wrapper, Input, Span, Button, AuthContainer } from "../../components";
 import { login, register } from "../../store/actions";
 import { UserValues } from "../types";
 import { userSchema, newUserSchema } from "../../utils";
+
 // initials
 const newUserValues: UserValues = {
   email: "",
@@ -16,16 +17,21 @@ const newUserValues: UserValues = {
 
 export const Auth: FC = () => {
   const [isSignup, setIsSignup] = useState<boolean>(false);
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showPass, setShowPass] = useState<boolean>(false);
+  const [showPass2, setShowPass2] = useState<boolean>(false);
 
-  const handleShowPassword = () => setShowPassword(!showPassword);
+  // toggle password visibility
+  const handleShowPass = () => setShowPass(!showPass);
+  const handleShowPass2 = () => setShowPass2(!showPass2);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // toggle signup and signin
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
-    setShowPassword(false);
+    setShowPass(false);
+    setShowPass2(false);
   };
 
   return (
@@ -58,7 +64,7 @@ export const Auth: FC = () => {
               <React.Fragment>
                 <form onSubmit={handleSubmit}>
                   {isSignup && (
-                    <>
+                    <React.Fragment>
                       <Wrapper className='email'>
                         {errors.email && touched.email && (
                           <Span color='var(--nice-red)'>{errors.email}</Span>
@@ -73,7 +79,7 @@ export const Auth: FC = () => {
                           onBlur={handleBlur}
                         />
                       </Wrapper>
-                    </>
+                    </React.Fragment>
                   )}
                   <Wrapper className='username'>
                     {errors.username && touched.username && (
@@ -98,11 +104,15 @@ export const Auth: FC = () => {
                       id='password'
                       placeholder='Password'
                       value={values.password}
-                      type={showPassword ? "text" : "password"}
+                      type={showPass ? "text" : "password"}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    <i className='fa fa-eye' onClick={handleShowPassword}></i>
+                    <i
+                      className={showPass ? "fa fa-eye-slash" : "fa fa-eye"}
+                      aria-hidden='true'
+                      onClick={handleShowPass}
+                    ></i>
                   </Wrapper>
                   {isSignup && (
                     <Wrapper className='password'>
@@ -114,18 +124,25 @@ export const Auth: FC = () => {
                         id='password2'
                         placeholder='Confirm Password'
                         value={values.password2}
-                        type={showPassword ? "text" : "password"}
+                        type={showPass2 ? "text" : "password"}
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
-                      <i className='fa fa-eye' onClick={handleShowPassword}></i>
+                      <i
+                        className={showPass2 ? "fa fa-eye-slash" : "fa fa-eye"}
+                        aria-hidden='true'
+                        onClick={handleShowPass2}
+                      ></i>
                     </Wrapper>
                   )}
                   <Wrapper>
                     <Button
                       type='submit'
-                      color='var(--tertiaryColor)'
+                      color='var(--tertiary)'
                       width='100%'
+                      bg='var(--nice-yellow)'
+                      uppercase='uppercase'
+                      bold='bold'
                       disabled={isSubmitting}
                     >
                       {isSignup ? "Sign Up" : "Sign In"}
@@ -135,7 +152,8 @@ export const Auth: FC = () => {
                 <Wrapper>
                   <Button
                     width='100%'
-                    color='var(--tertiaryColor)'
+                    color='var(--tertiary)'
+                    bg='var(--nice-yellow)'
                     onClick={switchMode}
                   >
                     {isSignup

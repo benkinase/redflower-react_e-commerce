@@ -16,7 +16,7 @@ export const Products: FC = () => {
   }, [dispatch]);
 
   if (loading) {
-    <CustomContainer title='Loading'></CustomContainer>;
+    <CustomContainer title='Loading product'></CustomContainer>;
   }
   if (error) {
     return <CustomContainer title={error} />;
