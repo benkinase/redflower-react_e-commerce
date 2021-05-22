@@ -22,7 +22,7 @@ export const Product: FC<ProductProps> = ({ product }) => {
   };
   return (
     <ProductContainer>
-      <ImageContainer src={product.get_thumbnail} alt='product image' />
+      <ImageContainer src={product.get_image} alt='product image' />
       <Wrapper margin='10px auto' width='90%'>
         <Wrapper className='name-price'>
           <Paragraph>{product.name}</Paragraph>
