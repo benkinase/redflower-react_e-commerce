@@ -4,7 +4,7 @@ export type User = {
   password: string;
 };
 // user signup
-export type NewUser = User & {
+export type UserValues = User & {
   firstName?: string;
   lastName?: string;
   email?: string;

@@ -1,6 +1,6 @@
 import { actionTypes as Action } from "../../actionTypes";
 import { axiosAPI, axiosAPI2 } from "../../../utils/credentials";
-import { NewUser, User } from "../../../pages/types";
+import { UserValues, User } from "../../../pages/types";
 
 export const loadUser = () => async (dispatch: any) => {
   dispatch({
@@ -19,7 +19,9 @@ export const loadUser = () => async (dispatch: any) => {
 };
 
 // log in existing user
-export const login = (user: User) => async (dispatch: any) => {
+export const login = (formValues: UserValues) => async (dispatch: any) => {
+  const { username, password } = formValues;
+  const user: User = { username, password };
   dispatch({ type: Action.LOGIN_REQUEST, payload: user });
   try {
     const { data } = await axiosAPI2.post("/api/v1/token/login/", user);
@@ -35,8 +37,7 @@ export const login = (user: User) => async (dispatch: any) => {
 };
 
 // register new user
-export const register = (newUser: NewUser) => async (dispatch: any) => {
-  console.log(newUser);
+export const register = (newUser: UserValues) => async (dispatch: any) => {
   dispatch({
     type: Action.REGISTER_REQUEST,
     payload: newUser,

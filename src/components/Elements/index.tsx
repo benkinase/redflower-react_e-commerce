@@ -14,7 +14,13 @@ export const Paragraph = styled.p.attrs({
   color: ${(props) => props.color};
 `;
 export const Label = styled.label``;
-export const Span = styled.span``;
+
+type SpanProps = {
+  color?: string;
+};
+export const Span = styled.span<SpanProps>`
+  color: ${(props) => props.color};
+`;
 
 interface ButtonProps {
   color?: string;
@@ -23,6 +29,7 @@ interface ButtonProps {
   radius?: string;
   uppercase?: string;
   bold?: string;
+  onClick?: Function;
 }
 // custom Bar chart container
 export const Button = styled.button<ButtonProps>`
@@ -94,6 +101,8 @@ export const StyledNavLink = styled(NavLink)<NavLinkProps>`
 
 type InputProps = {
   width?: string;
+  helperText?: Object;
+  error?: boolean;
 };
 export const Input = styled.input.attrs(({ type }) => ({
   type: type || "text",
