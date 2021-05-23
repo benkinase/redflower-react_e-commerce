@@ -136,15 +136,16 @@ const Sidebar: FC<SideBarProps> = ({ isOpen, state, close }) => {
               <span onClick={close}>Login</span>
             </StyledNavLink>
           )}
-
-          <StyledNavLink
-            border='1px solid var(--nice-red)'
-            color='var(--tertiary)'
-            margin='10px 0px'
-            to='/profile'
-          >
-            <span onClick={close}>Account</span>
-          </StyledNavLink>
+          {token && (
+            <StyledNavLink
+              border='1px solid var(--nice-red)'
+              color='var(--tertiary)'
+              margin='10px 0px'
+              to='/profile'
+            >
+              <span onClick={close}>Account</span>
+            </StyledNavLink>
+          )}
 
           <StyledNavLink to='/cart' className='cart-link'>
             <i className='fas fa-shopping-cart' onClick={close}>
