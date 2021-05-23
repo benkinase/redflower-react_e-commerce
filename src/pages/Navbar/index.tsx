@@ -7,7 +7,7 @@ import {
   SidebarContainer,
   Span,
   StyledNavLink,
-  Rounded,
+  ButtonR,
   StyledModal,
 } from "../../components";
 import { SearchBar } from "../Search";
@@ -54,14 +54,14 @@ export function Navbar() {
                 <i className='fas fa-shopping-cart'></i>
                 <Span className='cart-value'>{state?.length}</Span>
               </StyledNavLink>
-              <Rounded
+              <ButtonR
                 border='1px solid var(--nice-red)'
                 color='var(--tertiary)'
                 radius='20px'
                 onClick={() => toggleModal()}
               >
                 Categories
-              </Rounded>
+              </ButtonR>
 
               {isModal && <ModalCategories toggleModal={toggleModal} />}
               {!token && (
@@ -98,6 +98,7 @@ type SideBarProps = {
   state: Array<ICart>;
 };
 const Sidebar: FC<SideBarProps> = ({ isOpen, state, close }) => {
+  const { token } = useSelector((state: any) => state.auth);
   let drawClass = "sidebar";
 
   if (isOpen) {
@@ -125,15 +126,16 @@ const Sidebar: FC<SideBarProps> = ({ isOpen, state, close }) => {
           >
             <span onClick={close}>New Fashion</span>
           </StyledNavLink>
-
-          <StyledNavLink
-            border='1px solid var(--nice-red)'
-            color='var(--tertiary)'
-            margin='10px 0px'
-            to='/auth'
-          >
-            <span onClick={close}>Login</span>
-          </StyledNavLink>
+          {!token && (
+            <StyledNavLink
+              border='1px solid var(--nice-red)'
+              color='var(--tertiary)'
+              margin='10px 0px'
+              to='/auth'
+            >
+              <span onClick={close}>Login</span>
+            </StyledNavLink>
+          )}
 
           <StyledNavLink
             border='1px solid var(--nice-red)'
@@ -145,10 +147,9 @@ const Sidebar: FC<SideBarProps> = ({ isOpen, state, close }) => {
           </StyledNavLink>
 
           <StyledNavLink to='/cart' className='cart-link'>
-            <i className='fas fa-shopping-cart'></i>
-            <Span className='cart-value' onClick={close}>
-              {state?.length}
-            </Span>
+            <i className='fas fa-shopping-cart' onClick={close}>
+              <Span className='cart-value'>{state?.length}</Span>
+            </i>
           </StyledNavLink>
         </Wrapper>
       </Wrapper>
@@ -158,9 +159,6 @@ const Sidebar: FC<SideBarProps> = ({ isOpen, state, close }) => {
 
 type ModalProps = {
   children?: React.ReactNode;
-  men?: string;
-  women?: string;
-  isOpen?: boolean;
   toggleModal: () => void;
 };
 export const ModalCategories: React.FC<ModalProps> = ({

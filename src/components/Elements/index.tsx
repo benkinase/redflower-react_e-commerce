@@ -51,14 +51,14 @@ export const Button = styled.button<ButtonProps>`
   }
 `;
 
-interface RoundedProps {
+interface ButtonRProps {
   color?: string;
   bg?: string;
   width?: string;
   radius?: string;
   border?: string;
 }
-export const Rounded = styled.button<RoundedProps>`
+export const ButtonR = styled.button<ButtonRProps>`
   text-decoration: none;
   padding: 3px 15px;
   margin: 0 10px;

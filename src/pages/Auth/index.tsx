@@ -43,10 +43,10 @@ export const Auth: FC = () => {
           initialValues={newUserValues}
           onSubmit={(values: UserValues, actions) => {
             isSignup ? dispatch(register(values)) : dispatch(login(values));
+            history.push("/");
             setTimeout(() => {
               actions.resetForm();
               actions.setSubmitting(false);
-              history.push("/");
             }, 500);
           }}
         >
