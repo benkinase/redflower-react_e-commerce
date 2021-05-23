@@ -23,7 +23,7 @@ export const ProductDashboard: FC<ProductsProps> = ({ children }) => {
 
 // a product container
 export const ProductContainer = styled(Box)`
-  background: var(--secondary);
+  background-color: var(--secondary);
   box-shadow: var(--mainShadow);
   transition: var(--mainTransition);
 
@@ -47,47 +47,77 @@ export const ProductContainer = styled(Box)`
 `;
 
 export const ProductDetail = styled(Box)`
+.product__detail__page{
   width: 90%;
-  margin: 10rem auto !important;
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 20px;
-  margin-top: 20px;
+  margin: 10rem auto;
+  display: flex;
+  flex-direction:column;
   color: ${(props) => props.color};
-  input {
-    width: 45%;
-  }
-  .btn-container {
-    width: 100%;
-    margin: 20px auto;
-    button {
-      width: 45%;
-    }
-    button:first-child {
-      margin-right: 15px;
-    }
-  }
+}
+
   .product__top {
-    margin-bottom: 10px;
+    margin-bottom: 30px;
   }
   .product__bottom {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    .subtitle {
+      padding-bottom: 10px;
+      font-weight:bold;
+    }
     strong {
       margin: 20px 0;
       font-size: 17px;
     }
   }
-  img {
-    margin-bottom: 20px;
+ img {
+    padding-bottom: 40px;
     transition: var(--mainTransition);
   }
+  .product__select {
+    margin: 10px 0;
+    .control {
+      display: flex;
+      width: 100%;
+      & select {
+        margin-left: 0px;
+        width: 50%;
+        background-color: var(--secondary);
+        border-radius: 5px;
+
+        &:focus {
+          outline: none;
+          border: 1px solid var(--nice-red);
+        }
+      }
+    }
+  }
+
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 10px auto;
+    button {
+      width: 100%;
+      margin-bottom: 10px;
+      background-color:var(--nice-red);
+      color:var(--secondary);
+    }
+  }
+
   img:hover {
     opacity: 0.85;
   }
 
-  @media screen and (min-width: 780px) {
-    grid-template-columns: repeat(2, 1fr);
+  @media screen and (min-width: 750px) {
+    .product__detail__page{
+    display: grid;
+    grid-template-columns: 2fr 1.5fr;
     gap: 40px;
+    }
+    .product__bottom {
+    width: 80%;
   }
 `;
 // products search/category

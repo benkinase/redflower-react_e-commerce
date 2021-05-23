@@ -110,7 +110,7 @@ export const SidebarStyle = styled.div`
     position: fixed;
     color: var(--tertiary);
     transition: all 0.3s 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-    transform: translateX(-40rem);
+    transform: translateX(-50rem);
     width: 100%;
     margin: auto;
     padding: 5px;

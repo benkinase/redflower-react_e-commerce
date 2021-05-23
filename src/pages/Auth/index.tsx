@@ -37,7 +37,7 @@ export const Auth: FC = () => {
   return (
     <AuthContainer>
       <Wrapper className='user__form__wrapper'>
-        <h2>{isSignup ? "Sign up" : "Sign in"}</h2>
+        <h2>{isSignup ? "Sign Up" : "Sign In"}</h2>
         <Formik
           validationSchema={isSignup ? newUserSchema : userSchema}
           initialValues={newUserValues}

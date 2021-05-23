@@ -48,36 +48,41 @@ export function ProductDetails() {
   };
   return (
     <ProductDetail>
-      <Wrapper className='product__top'>
-        <ImageContainer height='55%' src={product && product.get_image} />
-        <h2 className='title'>{product && product.name}</h2>
-        <Paragraph>{product && product.description}</Paragraph>
-      </Wrapper>
+      <Wrapper className='product__detail__page'>
+        <Wrapper className='product__top'>
+          <ImageContainer height='55%' src={product && product.get_image} />
+          <h2 className='title'>{product && product.name}</h2>
+          <Paragraph>{product && product.description}</Paragraph>
+        </Wrapper>
 
-      <Wrapper className='product__bottom'>
-        <h3 className='subtitle'>Product Information</h3>
-        <Paragraph>
-          <strong>Price: </strong>€{product && product.price}
-        </Paragraph>
-        <Paragraph>
-          <strong>Category: </strong>
-          {product && product.cat}
-        </Paragraph>
+        <Wrapper className='product__bottom'>
+          <h3 className='subtitle'>Product Information</h3>
+          <Paragraph>
+            <strong>Price: </strong>€{product && product.price}
+          </Paragraph>
+          <Paragraph>
+            <strong>Category: </strong>
+            {product && product.cat}
+          </Paragraph>
 
-        <Wrapper className='product__select'>
-          <Wrapper className='control'>
-            <Select name='color' value={variants.color} onChange={handleChange}>
-              {colors.map((color, index) => {
-                return <option key={index}>{color}</option>;
-              })}
-            </Select>
-          </Wrapper>
-          <Wrapper className='control'>
-            <Select name='size' value={variants.size} onChange={handleChange}>
-              {sizes.map((size, index) => {
-                return <option key={index}>{size}</option>;
-              })}
-            </Select>
+          <Wrapper className='product__select'>
+            <Wrapper className='control'>
+              <Select
+                name='color'
+                value={variants.color}
+                onChange={handleChange}
+              >
+                {colors.map((color, index) => {
+                  return <option key={index}>{color}</option>;
+                })}
+              </Select>
+
+              <Select name='size' value={variants.size} onChange={handleChange}>
+                {sizes.map((size, index) => {
+                  return <option key={index}>{size}</option>;
+                })}
+              </Select>
+            </Wrapper>
           </Wrapper>
           <Wrapper className='btn-container'>
             <Button onClick={() => handleAddToCart(product)}>
