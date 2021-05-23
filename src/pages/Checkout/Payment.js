@@ -15,14 +15,19 @@ const stripePromise = loadStripe(PUBLISHABLE_KEY, {
   //stripeAccount: "{{CONNECTED_STRIPE_ACCOUNT_ID}}",
 });
 
-const CheckoutForm = ({ handlePayment }) => {
+const CheckoutForm = ({ handlePayment, token }) => {
   const stripe = useStripe();
   const elements = useElements();
-  //const [payId, setPayId] = React.useState();
-  const [error, setError] = useState(null);
+  // handle error
+  const [hasError, setHasError] = useState(null);
 
+  // handle order/payment submission if user token
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!token) {
+      setHasError("Please login to place order");
+      return;
+    }
 
     if (!stripe || !elements) {
       return;
@@ -33,7 +38,7 @@ const CheckoutForm = ({ handlePayment }) => {
 
     if (result.error) {
       // Show error to your customer.
-      setError(result.error.message);
+      setHasError(result.error.message);
     } else {
       // Send the token to your server.
 
@@ -54,13 +59,14 @@ const CheckoutForm = ({ handlePayment }) => {
       >
         pay with stripe
       </Button>
-      {error && <Paragraph color='var(--nice-red)'>{error}</Paragraph>}
+
+      {hasError && <Paragraph color='var(--nice-red)'>{hasError}</Paragraph>}
     </form>
   );
 };
 
-export const StripePayment = ({ handlePayment }) => (
+export const StripePayment = ({ handlePayment, token }) => (
   <Elements stripe={stripePromise}>
-    <CheckoutForm handlePayment={handlePayment} />
+    <CheckoutForm handlePayment={handlePayment} token={token} />
   </Elements>
 );

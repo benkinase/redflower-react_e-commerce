@@ -10,12 +10,14 @@ import {
 import { getItemTotal, cartTotalPrice, clearCart } from "../../store/actions";
 import { ICart, CheckoutItem, CheckoutProps } from "../types";
 import { StripePayment } from "./Payment";
-import { axiosAPI } from "../../utils";
+import { axiosAPI, checkoutUser, payTypes } from "../../utils";
 import { useHistory } from "react-router-dom";
 import { AxiosResponse } from "axios";
 
 export const Checkout = () => {
   const { cartItems } = useSelector((state: any) => state.cart);
+  const { token } = useSelector((state: any) => state.auth);
+  // checkout user
   const [state, setState] = React.useState<CheckoutProps>({
     first_name: "",
     last_name: "",
@@ -26,15 +28,20 @@ export const Checkout = () => {
     city: "",
   });
 
+  // Payment methods
+  const [payType, setPayType] = React.useState(payTypes[0].type);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.name);
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
     setState({ ...state, [name]: value });
+    console.log(state);
   };
 
   const handlePayment = async (token: any) => {
@@ -67,15 +74,9 @@ export const Checkout = () => {
       dispatch(clearCart());
       history.push("/success");
     }
-
+    // reset checkout user state
     setState(state);
   };
-  // Payment methods
-  const payTypes = [
-    { id: 1, type: "Stripe" },
-    { id: 2, type: "Paypal" },
-  ];
-  const [payType, setPayType] = React.useState(payTypes[0].type);
 
   return (
     <CheckoutContainer>
@@ -120,81 +121,20 @@ export const Checkout = () => {
         <h2 className='subtitle'>Shipping details</h2>
         <Wrapper className='shipping'>
           <Wrapper className='left'>
-            <Wrapper className='control'>
-              <Input
-                type='text'
-                className='input'
-                name='first_name'
-                required
-                placeholder='First name'
-                onChange={handleChange}
-              />
-            </Wrapper>
-
-            <Wrapper className='control'>
-              <Input
-                type='text'
-                name='last_name'
-                className='input'
-                required
-                placeholder='Last name'
-                onChange={handleChange}
-              />
-            </Wrapper>
-
-            <Wrapper className='control'>
-              <Input
-                type='email'
-                name='email'
-                className='input'
-                placeholder='Email'
-                required
-                onChange={handleChange}
-              />
-            </Wrapper>
-
-            <Wrapper className='control'>
-              <Input
-                type='text'
-                name='phone'
-                className='input'
-                placeholder='Phone number'
-                onChange={handleChange}
-              />
-            </Wrapper>
-
-            <Wrapper className='control'>
-              <Input
-                type='text'
-                name='address'
-                className='input'
-                required
-                placeholder='Address'
-                onChange={handleChange}
-              />
-            </Wrapper>
-
-            <Wrapper className='control'>
-              <Input
-                type='text'
-                name='zipcode'
-                className='input'
-                required
-                placeholder='Zip code'
-                onChange={handleChange}
-              />
-            </Wrapper>
-
-            <Wrapper className='control'>
-              <Input
-                type='text'
-                name='city'
-                className='input'
-                required
-                placeholder='City'
-                onChange={handleChange}
-              />
-            </Wrapper>
+            {checkoutUser.map((userInfo) => {
+              return (
+                <Wrapper className='control' key={userInfo.id}>
+                  <Input
+                    type='text'
+                    name={userInfo.name}
+                    className='input'
+                    required
+                    placeholder={userInfo.placeholder}
+                    onChange={handleChange}
+                  />
+                </Wrapper>
+              );
+            })}
           </Wrapper>
 
           <Wrapper className='checkout-shiping-foot'>
@@ -212,7 +152,7 @@ export const Checkout = () => {
               })}
             </select>
             {payType === "Stripe" && (
-              <StripePayment handlePayment={handlePayment} />
+              <StripePayment handlePayment={handlePayment} token={token} />
             )}
             {payType === "Paypal" && (
               <Button

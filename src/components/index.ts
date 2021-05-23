@@ -8,7 +8,7 @@ export {
   Span,
   Divider,
   Anchor,
-  Rounded,
+  ButtonR,
 } from "./Elements";
 export {
   FlexContainer,

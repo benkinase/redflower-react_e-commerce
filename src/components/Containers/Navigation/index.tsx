@@ -98,6 +98,8 @@ export const NavbarContainer = styled.nav`
     }
   }
 `;
+
+// SIDEBAR CONTAINER
 type SideContainerProps = {
   isOpen?: boolean;
   className?: string;
@@ -127,7 +129,7 @@ export const SidebarStyle = styled.div`
     width: 60%;
   }
   .show {
-    transform: translateY(0);
+    transform: translateX(0);
     animation: ${show} 1s ease-in forwards;
   }
   p {
@@ -152,9 +154,10 @@ export const SidebarStyle = styled.div`
     margin-top: 20px;
     .fa-shopping-cart {
       color: var(--nice-yellow);
-      font-size: 30px;
+      font-size: 20px;
     }
     .cart-value {
+      color: var(--tertiary);
       position: absolute;
       top: -8px;
       font-weight: 800;
@@ -179,13 +182,12 @@ export const StyledModal = styled.div`
   top: 3%;
   left: 45%;
   width: 300px;
-  background: var(--secondary);
-  border: 1px solid var(--nice-red);
-  border-radius: 2px;
+  background: var(--primary);
+  box-shadow: var(--lightShadow);
   display: flex;
   flex-wrap: wrap;
   padding: 20px 20px;
-  border-radius: 2px;
+  border-radius: 5px;
   transition: all 0.3s ease;
 
   @media screen and(max-width:750px) {
