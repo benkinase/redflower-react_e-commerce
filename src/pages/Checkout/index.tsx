@@ -8,7 +8,7 @@ import {
   ShippingContainer,
 } from "../../components";
 import { getItemTotal, cartTotalPrice, clearCart } from "../../store/actions";
-import { ICart, CheckoutItem, CheckoutProps } from "../types";
+import { ICart, CheckoutItem, CheckoutProps } from "../../types";
 import { StripePayment } from "./Payment";
 import { axiosAPI, checkoutUser, payTypes } from "../../utils";
 import { useHistory } from "react-router-dom";

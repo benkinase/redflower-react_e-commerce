@@ -1,5 +1,5 @@
 import { actionTypes as Action } from "../../actionTypes";
-import { UserState, RegisterState } from "../../../pages/types";
+import { UserState, RegisterState } from "../../../types";
 
 let pre_Token = localStorage.getItem("token");
 let token = pre_Token ? JSON.parse(pre_Token) : null;

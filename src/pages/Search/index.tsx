@@ -11,7 +11,7 @@ import {
   ProductsResult,
 } from "../../components";
 
-import { IProduct } from "../types";
+import { IProduct } from "../../types";
 import { Product } from "../Product";
 import { fetchSearchProducts } from "../../store/actions";
 
@@ -39,9 +39,7 @@ export const SearchBar = () => {
 };
 
 export const Search = () => {
-  const { products, error, loading } = useSelector(
-    (state: any) => state.searched
-  );
+  const { data, error, loading } = useSelector((state: any) => state.searched);
   const [localError, setLocalError] = useState<string | null>("");
   const [query, setQuery] = useState<string | null | undefined>("");
   const dispatch = useDispatch();
@@ -79,10 +77,15 @@ export const Search = () => {
     return <CustomContainer title={error} />;
   }
 
-  if (products?.length < 1) {
+  if (data?.length < 1) {
     return (
       <CustomContainer title='No match found for' subtitle={query}>
-        <StyledNavLink to='/' bg='var(--nice-red)' padding='10px 20px'>
+        <StyledNavLink
+          to='/'
+          bg='var(--nice-red)'
+          padding='10px 20px'
+          color='var(--nice-gray)'
+        >
           Back home
         </StyledNavLink>
       </CustomContainer>
@@ -92,8 +95,8 @@ export const Search = () => {
     <ProductsResult>
       <h3>Search term: {query}</h3>
       <ProductDashboard>
-        {products &&
-          products.map((product: IProduct) => {
+        {data &&
+          data.map((product: IProduct) => {
             return <Product product={product} key={product.id} />;
           })}
       </ProductDashboard>

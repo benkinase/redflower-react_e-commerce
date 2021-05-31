@@ -11,15 +11,22 @@ import {
   StyledLink,
   ProductDetail,
   Wrapper,
+  CustomContainer,
 } from "../../components";
 
-import { DetailsParams, ICart } from "../types";
+import { ICart } from "../../types";
 
+export type DetailsParams = {
+  cat_slug: string;
+  prod_slug: string;
+};
 export function ProductDetails() {
   // destructuring params props
   const { cat_slug, prod_slug } = useParams<DetailsParams>();
   // get fetched product from state
-  const { product } = useSelector((state: any) => state.product);
+  const { product, loading, error } = useSelector(
+    (state: any) => state.product
+  );
   const [currentItem, setItem] = useState<ICart | {}>(product);
   const [variants, setVariants] = useState<{ color: string; size: string }>({
     color: "",
@@ -46,6 +53,13 @@ export function ProductDetails() {
     let { name, value } = e.target;
     setVariants({ ...variants, [name]: value });
   };
+
+  if (loading) {
+    return <CustomContainer title='Product loading' />;
+  }
+  if (error) {
+    return <CustomContainer title={error} />;
+  }
   return (
     <ProductDetail>
       <Wrapper className='product__detail__page'>

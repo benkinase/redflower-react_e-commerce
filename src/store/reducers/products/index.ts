@@ -1,8 +1,8 @@
 import { actionTypes as Action } from "../../actionTypes";
-import { ProductState, ProductAction } from "../../../pages/types";
+import { ProductState, ProductAction } from "../../../types";
 
 const initialState: ProductState = {
-  products: [],
+  data: [],
   loading: false,
   error: "",
 };
@@ -17,7 +17,7 @@ export const productReducer = (
     case Action.GET_PRODUCTS_SUCCESS:
       return {
         ...state,
-        products: action.payload,
+        data: action.payload,
         loading: false,
         error: "",
       };

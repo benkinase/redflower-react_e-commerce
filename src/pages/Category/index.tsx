@@ -9,9 +9,13 @@ import {
   ProductsResult,
 } from "../../components";
 import { Product } from "../Product";
-import { CategoriesParams, IProduct } from "../types";
+import { IProduct } from "../../types";
 import { fetchCategories } from "../../store/actions";
 
+// prouct category param
+export type CategoriesParams = {
+  cat_slug: string;
+};
 export const Category = () => {
   const { products, name, error, loading } = useSelector(
     (state: any) => state.categories

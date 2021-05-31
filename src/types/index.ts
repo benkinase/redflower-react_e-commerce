@@ -49,22 +49,19 @@ export type ICart = IProduct & {
   //extends IProduct
   quantity?: number;
 };
-// prouct category param
-export type CategoriesParams = {
-  cat_slug: string;
-};
+
 // product category result
 export type Categories = {
   id?: number;
   get_absolute_url?: string;
   name?: string;
-  products: IProduct[];
+  data: IProduct[];
   loading: boolean;
   error: string;
 };
 // product search result
 export type Searched = {
-  products: IProduct[];
+  data: IProduct[];
   loading: boolean;
   error: string;
 };
@@ -115,7 +112,7 @@ export interface ProductDetailsState {
 
 // global state
 export type ProductState = {
-  products: IProduct[];
+  data: IProduct[];
   loading: boolean;
   error: string;
 };
@@ -129,10 +126,6 @@ export type ProductAction = {
   type: string;
   payload: any;
   product: IProduct;
-};
-export type DetailsParams = {
-  cat_slug: string;
-  prod_slug: string;
 };
 
 export type DispatchType = (args: ProductAction) => ProductAction;

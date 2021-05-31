@@ -1,4 +1,4 @@
-import { ICart } from "../../../pages/types";
+import { ICart } from "../../../types";
 import { actionTypes as Action } from "../../actionTypes";
 
 const addToCart = (item: ICart) => async (dispatch: any) => {

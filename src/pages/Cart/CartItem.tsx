@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { ICart } from "../types";
+import { ICart } from "../../types";
 import { useDispatch } from "react-redux";
 import { StyledNavLink, CartItemContainer } from "../../components";
 

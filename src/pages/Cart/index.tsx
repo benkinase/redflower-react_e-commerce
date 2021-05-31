@@ -14,7 +14,7 @@ import {
   cartTotalPrice,
   clearCart,
 } from "../../store/actions";
-import { ICart } from "../types";
+import { ICart } from "../../types";
 
 export const Cart = () => {
   const { cartItems } = useSelector((state: any) => state.cart);

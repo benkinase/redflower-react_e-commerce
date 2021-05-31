@@ -11,7 +11,7 @@ import {
   StyledModal,
 } from "../../components";
 import { SearchBar } from "../Search";
-import { ICart } from "../types";
+import { ICart } from "../../types";
 import AppLogo from "../../utils/SVG/logo.svg";
 
 export function Navbar() {
@@ -80,6 +80,7 @@ export function Navbar() {
                 <StyledNavLink
                   border='1px solid var(--nice-gray)'
                   color='var(--tertiary)'
+                  padding='3px 15px'
                   radius='20px'
                   to='/profile'
                 >

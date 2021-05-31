@@ -1,5 +1,5 @@
 import { actionTypes as Action } from "../../actionTypes";
-import { ProductDetailsState, ProductAction } from "../../../pages/types";
+import { ProductDetailsState, ProductAction } from "../../../types";
 
 const initialState: ProductDetailsState = {
   product: {},

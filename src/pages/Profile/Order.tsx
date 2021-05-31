@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { removeOrder } from "../../store/actions";
 import { Wrapper, Paragraph } from "../../components";
-import { OrderItem } from "../types";
+import { OrderItem } from "../../types";
 
 type OrderProps = {
   order: any;

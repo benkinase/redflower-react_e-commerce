@@ -1,5 +1,5 @@
 import { actionTypes as Action } from "../../actionTypes";
-import { OrderState } from "../../../pages/types";
+import { OrderState } from "../../../types";
 
 const initialState: OrderState = {
   id: null,

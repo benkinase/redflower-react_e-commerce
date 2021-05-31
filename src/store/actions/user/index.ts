@@ -1,6 +1,6 @@
 import { actionTypes as Action } from "../../actionTypes";
 import { axiosAPI, axiosAPI2 } from "../../../utils/credentials";
-import { UserValues, User } from "../../../pages/types";
+import { UserValues, User } from "../../../types";
 
 export const loadUser = () => async (dispatch: any) => {
   dispatch({

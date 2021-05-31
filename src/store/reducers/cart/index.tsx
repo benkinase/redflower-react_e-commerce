@@ -1,5 +1,5 @@
 import { actionTypes as Action } from "../../actionTypes";
-import { CartState } from "../../../pages/types";
+import { CartState } from "../../../types";
 
 let cartValue;
 const initCart = localStorage.getItem("cart");

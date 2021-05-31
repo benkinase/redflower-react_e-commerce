@@ -8,7 +8,7 @@ import {
   Wrapper,
   StyledLink,
 } from "../../components";
-import { ICart, IProduct } from "../types";
+import { ICart, IProduct } from "../../types";
 import { useDispatch } from "react-redux";
 
 type ProductProps = {

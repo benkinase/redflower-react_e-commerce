@@ -34,11 +34,6 @@ export const NavbarContainer = styled.nav`
     column-gap: 10px;
   }
 
-  // .home {
-  //   color: var(--nice-red);
-  //   font-weight: bold;
-  //   font-size: 18px;
-  // }
   .fa-bars {
     font-size: 40px;
     cursor: pointer;
@@ -87,14 +82,13 @@ export const NavbarContainer = styled.nav`
       align-items: center;
     }
     .only_large_screen {
-      right: 20px;
+      margin-right: 25px;
       display: flex;
       animation-name: ${show};
       animation-duration: 1s;
       animation-fill-mode: forwards;
     }
     .only_large_screen {
-      padding-left: 5px;
       letter-spacing: 1.2px;
     }
   }

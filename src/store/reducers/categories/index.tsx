@@ -1,8 +1,8 @@
 import { actionTypes as Action } from "../../actionTypes";
-import { Categories, Searched } from "../../../pages/types";
+import { Categories, Searched } from "../../../types";
 
 const initialState: Categories = {
-  products: [],
+  data: [],
   name: "",
   loading: false,
   error: "",
@@ -18,7 +18,7 @@ export const catReducer = (
     case Action.GET_CATEGORIES_SUCCESS:
       return {
         loading: false,
-        products: action.payload.products,
+        data: action.payload.products,
         name: action.payload.name,
       };
     case Action.GET_CATEGORIES_FAIL:
@@ -34,7 +34,7 @@ export const catReducer = (
 };
 
 const initials: Searched = {
-  products: [],
+  data: [],
   loading: false,
   error: "",
 };
@@ -48,7 +48,7 @@ export const searchReducer = (
     case Action.GET_SEARCH_SUCCESS:
       return {
         loading: false,
-        products: action.payload,
+        data: action.payload,
       };
     case Action.GET_SEARCH_FAIL:
       return {

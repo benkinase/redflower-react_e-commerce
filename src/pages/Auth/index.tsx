@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Formik, FormikProps } from "formik";
 import { Wrapper, Input, Span, Button, AuthContainer } from "../../components";
 import { login, register } from "../../store/actions";
-import { UserValues } from "../types";
+import { UserValues } from "../../types";
 import { userSchema, newUserSchema } from "../../utils";
 
 // initials
