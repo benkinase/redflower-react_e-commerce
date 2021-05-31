@@ -16,7 +16,7 @@ export const MainLayout: React.FC<LayoutProps> = ({ children }) => {
   }
 
   return (
-    <main style={{ marginTop: "5rem" }}>
+    <main>
       {isHome() && <LandingPage />}
       <MainContainer>{children}</MainContainer>
     </main>

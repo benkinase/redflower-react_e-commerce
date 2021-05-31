@@ -5,10 +5,10 @@ export const Box = styled("div")``;
 
 export const StyledProducts = styled(Box)`
   margin: 50px auto;
-  grid-template-rows: auto;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-rows: auto;
   gap: 20px;
   background-color: var(--primary);
   padding: 30px;

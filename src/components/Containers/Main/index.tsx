@@ -17,9 +17,8 @@ export const Wrapper = styled(Box)<WrapperProps>`
 
 // app root container
 export const MainContainer = styled(Box)`
-  margin: 5rem auto;
   width: 100vw;
-  margin: auto;
+  margin: 0rem auto 10rem;
   position: relative;
 `;
 
@@ -178,7 +177,7 @@ type Props = {
   GridType?: string;
 };
 export const StyledLanding = styled(Box)<Props>`
-  width: 100vw;
+  width: 100%;
   height: 500px;
   display: grid;
   grid-template-columns: ${(props) => props.GridType};
@@ -240,14 +239,14 @@ export const AuthContainer = styled(Box)`
       transition: var(--mainTransition);
       cursor: pointer;
       &:hover {
-        color: red;
+        color: var(--nice-red);
       }
     }
   }
   button {
     margin: 5px 0;
   }
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 768px) {
     .user__form__wrapper,
     h2 {
       width: 50%;

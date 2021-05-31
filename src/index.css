@@ -16,7 +16,7 @@
   --nice-yellow: #f89009;
   --nice-red: #960909;
   --nice-green: #5aaf0a;
-  --landing-gray: #5f5e5e;
+  --dark-gray: #5f5e5e;
   --error-red: #ee1414;
 }
 
@@ -49,7 +49,7 @@ body {
 .landing__page {
   width: 100%;
   height: 100%;
-  background-color: var(--landing-gray);
+  background-color: var(--dark-gray);
   background-image: url("./utils/landing_photo.jpg");
   background-blend-mode: multiply;
   background-size: cover;
@@ -58,4 +58,7 @@ body {
   padding-bottom: 30px;
   display: grid;
   place-items: center;
+}
+main {
+  margin: 5rem 0;
 }

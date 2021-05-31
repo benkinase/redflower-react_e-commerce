@@ -7,6 +7,7 @@ import { Navbar } from "./pages";
 import { routeComponents } from "./routeConfig";
 import { loadUser } from "./store/actions";
 import { ErrorFallback } from "./utils/validations";
+import { Footer } from "./pages/Footer";
 
 export const App: FC = () => {
   const { token } = useSelector((state: any) => state.auth);
@@ -23,6 +24,7 @@ export const App: FC = () => {
       <MainLayout>
         <Switch>{routeComponents}</Switch>
       </MainLayout>
+      <Footer />
     </ErrorBoundary>
   );
 };
