@@ -60,7 +60,7 @@ export type Categories = {
   error: string;
 };
 // product search result
-export type Searched = {
+export type SearchProducts = {
   data: IProduct[];
   loading: boolean;
   error: string;

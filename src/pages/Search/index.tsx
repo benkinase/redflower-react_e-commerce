@@ -39,7 +39,7 @@ export const SearchBar = () => {
 };
 
 export const Search = () => {
-  const { data, error, loading } = useSelector((state: any) => state.searched);
+  const { data, error, loading } = useSelector((state: any) => state.search);
   const [localError, setLocalError] = useState<string | null>("");
   const [query, setQuery] = useState<string | null | undefined>("");
   const dispatch = useDispatch();

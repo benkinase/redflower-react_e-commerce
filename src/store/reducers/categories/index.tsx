@@ -1,5 +1,5 @@
 import { actionTypes as Action } from "../../actionTypes";
-import { Categories, Searched } from "../../../types";
+import { Categories, SearchProducts } from "../../../types";
 
 const initialState: Categories = {
   data: [],
@@ -33,7 +33,7 @@ export const catReducer = (
   }
 };
 
-const initials: Searched = {
+const initials: SearchProducts = {
   data: [],
   loading: false,
   error: "",

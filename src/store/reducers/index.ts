@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   register: registerReducer,
   categories: catReducer,
   order: orderReducer,
-  searched: searchReducer,
+  search: searchReducer,
 });
 
 export default rootReducer;

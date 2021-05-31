@@ -17,7 +17,7 @@ export type CategoriesParams = {
   cat_slug: string;
 };
 export const Category = () => {
-  const { products, name, error, loading } = useSelector(
+  const { data, name, error, loading } = useSelector(
     (state: any) => state.categories
   );
   const { cat_slug } = useParams<CategoriesParams>();
@@ -34,7 +34,7 @@ export const Category = () => {
     return <CustomContainer title={error} />;
   }
 
-  if (products?.length < 1) {
+  if (data?.length < 1) {
     return (
       <CustomContainer title='No match found for' subtitle={cat_slug}>
         <StyledNavLink to='/' bg='var(--nice-red)' padding='10px 20px'>
@@ -51,8 +51,8 @@ export const Category = () => {
           <h3 className='category__name'>Category: {name}</h3>
         </Wrapper>
         <ProductDashboard>
-          {products &&
-            products.map((product: IProduct) => {
+          {data &&
+            data.map((product: IProduct) => {
               return <Product product={product} key={product.id} />;
             })}
         </ProductDashboard>
