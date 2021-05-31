@@ -21,6 +21,7 @@ export type UserState = {
   username?: string;
   email?: string;
 };
+
 // user signup state
 export type RegisterState = {
   error?: string | null;
@@ -114,10 +115,9 @@ export interface ProductDetailsState {
 
 // global state
 export type ProductState = {
-  data: [];
+  products: IProduct[];
   loading: boolean;
   error: string;
-  product?: {};
 };
 // global state
 export type IProducts = {

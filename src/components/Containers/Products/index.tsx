@@ -6,11 +6,11 @@ export const Box = styled("div")``;
 export const StyledProducts = styled(Box)`
   margin: 50px auto;
   grid-template-rows: auto;
-  width: 90%;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
-  background-color: #f8f8f8;
+  background-color: var(--primary);
   padding: 30px;
 `;
 

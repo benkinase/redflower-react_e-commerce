@@ -14,30 +14,31 @@ const show = keyframes`
 `;
 
 export const NavbarContainer = styled.nav`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 5px 0;
+  background: var(--secondary);
+  z-index: 1;
+
   .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    margin-bottom: 3rem;
-    padding: 0.75rem 2rem;
-    background: var(--secondary);
-    z-index: 1;
+    padding: 10px 0;
   }
 
   .nav__header {
+    width: 100%;
     display: grid;
     place-items: center;
-    grid-template-columns: 1fr 2.5fr 1fr;
+    grid-template-columns: 1fr 3.5fr 1fr;
     column-gap: 10px;
-    position: replative;
   }
 
-  .home {
-    color: var(--nice-red);
-    font-weight: bold;
-    font-size: 18px;
-  }
+  // .home {
+  //   color: var(--nice-red);
+  //   font-weight: bold;
+  //   font-size: 18px;
+  // }
   .fa-bars {
     font-size: 40px;
     cursor: pointer;
@@ -59,8 +60,8 @@ export const NavbarContainer = styled.nav`
   }
   .cart-value {
     position: absolute;
-    top: 4px;
-    right: 25px;
+    top: 0.5px;
+    right: 10px;
     color: var(--tertiary);
     font-size: 15px;
     font-weight: bold;
@@ -74,15 +75,15 @@ export const NavbarContainer = styled.nav`
     opacity: 0;
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 768px) {
     .fa-bars {
       display: none;
     }
     .nav__center {
-      min-width: 100vw;
+      width: 90%;
       margin: 0 auto;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
     }
     .only_large_screen {
@@ -163,7 +164,7 @@ export const SidebarStyle = styled.div`
       font-weight: 800;
     }
   }
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 768px) {
     transform: translateY(-40rem);
     .fas-bars {
       display: none;
@@ -179,8 +180,8 @@ export const SidebarContainer: FC<SideContainerProps> = ({ children }) => {
 export const StyledModal = styled.div`
   position: fixed;
   z-index: 100;
-  top: 3%;
-  left: 45%;
+  top: 3.5%;
+  left: 55%;
   width: 300px;
   background: var(--primary);
   box-shadow: var(--lightShadow);
@@ -190,7 +191,7 @@ export const StyledModal = styled.div`
   border-radius: 5px;
   transition: all 0.3s ease;
 
-  @media screen and(max-width:750px) {
+  @media screen and(max-width:768px) {
     top: 18%;
     left: 50%;
     width: 200px;

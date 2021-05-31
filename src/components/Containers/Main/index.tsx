@@ -30,18 +30,25 @@ export const SearchBarContainer = styled(Box)`
   .search-input {
     transition: var(--mainTransition);
     font-size: 14px;
-    border: 1px solid var(--nice-red);
+    padding: 6.5px;
+    border: 1px solid var(--nice-gray);
+    border-right: var(--secondary);
   }
   .search__button {
-    padding: 5px 10px;
-    border: none;
+    display: grid;
+    place-items: center;
+    padding: 7px 10px;
+    border: 1px solid var(--nice-gray);
+    color: var(--nice-gray);
+    border-radius: 3px 2px;
+    transition: var(--mainTransition);
   }
 
   .fa-search {
     font-size: 20px;
     transition: var(--mainTransition);
     &:hover {
-      color: var(--nice-red);
+      color: var(--nice-yellow);
     }
   }
 `;
@@ -55,7 +62,7 @@ export const ImageContainer = styled.img<ImageContainerProps>`
   width: 100%;
   height: ${(props) => (props.height ? props.height : "200px")};
   object-fit: cover;
-  transition: var(--mainTransition) !important;
+  transition: var(--mainTransition);
 `;
 type GridProps = {
   children?: React.ReactNode;
@@ -64,6 +71,7 @@ type GridProps = {
   space?: string;
   padding?: string;
 };
+
 export const GridContainer = styled(Box)<GridProps>`
   width: 100%;
   display: grid;
@@ -181,7 +189,10 @@ export const StyledLanding = styled(Box)<Props>`
     text-transform: uppercase;
     letter-spacing: 2px;
     padding-top: 4px;
-    color: var(--nice-red);
+    color: var(--nice-yellow);
+    & span {
+      color: var(--nice-gray);
+    }
   }
   .underline {
     width: 100%;

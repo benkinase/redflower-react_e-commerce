@@ -61,7 +61,12 @@ export const Search = () => {
     const title = "Enter a query to complete search";
     return (
       <CustomContainer title={title}>
-        <StyledNavLink to='/' bg='var(--nice-red)' padding='10px 20px'>
+        <StyledNavLink
+          to='/'
+          bg='var(--nice-red)'
+          padding='10px 20px'
+          color='var(--nice-gray)'
+        >
           Back home
         </StyledNavLink>
       </CustomContainer>

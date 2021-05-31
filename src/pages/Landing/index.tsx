@@ -5,7 +5,9 @@ export const LandingPage = () => {
   return (
     <StyledLanding>
       <Wrapper className='landing__page'>
-        <h3>welcome | redflower</h3>
+        <h3>
+          welcome <span>|</span> redflower
+        </h3>
       </Wrapper>
     </StyledLanding>
   );

@@ -12,6 +12,7 @@ import {
 } from "../../components";
 import { SearchBar } from "../Search";
 import { ICart } from "../types";
+import AppLogo from "../../utils/SVG/logo.svg";
 
 export function Navbar() {
   const state = useSelector((state: any) => state.cart.cartItems);
@@ -38,7 +39,7 @@ export function Navbar() {
             <Wrapper className='nav__header'>
               <Wrapper>
                 <StyledNavLink color='var(--tertiary)' to='/'>
-                  <span className='home'>RedfloweR</span>
+                  <img src={AppLogo} alt='AppLogo svg' />
                 </StyledNavLink>
               </Wrapper>
               <Wrapper>
@@ -55,7 +56,7 @@ export function Navbar() {
                 <Span className='cart-value'>{state?.length}</Span>
               </StyledNavLink>
               <ButtonR
-                border='1px solid var(--nice-red)'
+                border='1px solid var(--nice-gray)'
                 color='var(--tertiary)'
                 radius='20px'
                 onClick={() => toggleModal()}
@@ -66,8 +67,9 @@ export function Navbar() {
               {isModal && <ModalCategories toggleModal={toggleModal} />}
               {!token && (
                 <StyledNavLink
-                  border='1px solid var(--nice-red)'
+                  border='1px solid var(--nice-gray)'
                   color='var(--tertiary)'
+                  padding='3px 15px'
                   radius='20px'
                   to='/auth'
                 >
@@ -76,7 +78,7 @@ export function Navbar() {
               )}
               {token && (
                 <StyledNavLink
-                  border='1px solid var(--nice-red)'
+                  border='1px solid var(--nice-gray)'
                   color='var(--tertiary)'
                   radius='20px'
                   to='/profile'
@@ -110,27 +112,30 @@ const Sidebar: FC<SideBarProps> = ({ isOpen, state, close }) => {
         <i className='fas fa-times side-fa-times' onClick={close}></i>
         <Wrapper className='links'>
           <StyledNavLink
-            border='1px solid var(--nice-red)'
+            border='1px solid var(--nice-gray)'
             color='var(--tertiary)'
             margin='10px 0px'
+            padding='3px 15px'
             to='/old'
           >
             <span onClick={close}>Old Fashion</span>
           </StyledNavLink>
 
           <StyledNavLink
-            border='1px solid var(--nice-red)'
+            border='1px solid var(--nice-gray)'
             color='var(--tertiary)'
             margin='10px 0px'
+            padding='3px 15px'
             to='/new'
           >
             <span onClick={close}>New Fashion</span>
           </StyledNavLink>
           {!token && (
             <StyledNavLink
-              border='1px solid var(--nice-red)'
+              border='1px solid var(--nice-gray)'
               color='var(--tertiary)'
               margin='10px 0px'
+              padding='3px 15px'
               to='/auth'
             >
               <span onClick={close}>Login</span>
@@ -138,9 +143,10 @@ const Sidebar: FC<SideBarProps> = ({ isOpen, state, close }) => {
           )}
           {token && (
             <StyledNavLink
-              border='1px solid var(--nice-red)'
+              border='1px solid var(--nice-gray)'
               color='var(--tertiary)'
               margin='10px 0px'
+              padding='3px 15px'
               to='/profile'
             >
               <span onClick={close}>Account</span>
@@ -174,7 +180,8 @@ export const ModalCategories: React.FC<ModalProps> = ({
         bg='var(--primary)'
         radius='20px'
         margin='10px 0px'
-        border='1px solid var(--nice-red)'
+        padding='3px 15px'
+        border='1px solid var(--nice-gray)'
       >
         <Span onClick={() => toggleModal()}>New Fashion</Span>
       </StyledNavLink>
@@ -183,7 +190,8 @@ export const ModalCategories: React.FC<ModalProps> = ({
         color='var(--tertiary)'
         bg='var(--primary)'
         radius='20px'
-        border='1px solid var(--nice-red)'
+        padding='3px 15px'
+        border='1px solid var(--nice-gray)'
       >
         <Span onClick={() => toggleModal()}>Old Fashion</Span>
       </StyledNavLink>

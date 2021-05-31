@@ -88,17 +88,17 @@ interface NavLinkProps {
 }
 export const StyledNavLink = styled(NavLink)<NavLinkProps>`
   text-decoration: none;
-  padding: ${(props) => (props.padding ? props.padding : "3px 15px")};
+  padding: ${(props) => props.padding && props.padding};
   margin: ${(props) => props.margin && props.margin};
   color: ${(props) => (props.color ? props.color : "var(--tertiary)")};
   border-radius: ${(props) => props.radius};
   background-color: ${(props) => props.bg};
   border: ${(props) => props.border};
   width: ${(props) => props.width};
+  transition: var(--mainTransition);
   text-align: center;
   letter-spacing: 2px;
   &:hover {
-    color: var(--tertiary);
     opacity: 0.8;
   }
 `;

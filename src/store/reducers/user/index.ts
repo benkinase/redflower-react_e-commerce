@@ -3,6 +3,7 @@ import { UserState, RegisterState } from "../../../pages/types";
 
 let pre_Token = localStorage.getItem("token");
 let token = pre_Token ? JSON.parse(pre_Token) : null;
+
 const initialState: UserState = {
   token: token,
   isAuth: true,

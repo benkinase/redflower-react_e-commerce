@@ -7,7 +7,9 @@ import { IProduct } from "../types";
 import { Product } from "../Product";
 
 export const Products: FC = () => {
-  const { data, loading, error } = useSelector((state: any) => state.products);
+  const { products, loading, error } = useSelector(
+    (state: any) => state.products
+  );
 
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -16,19 +18,19 @@ export const Products: FC = () => {
   }, [dispatch]);
 
   if (loading) {
-    <CustomContainer title='Loading product'></CustomContainer>;
+    <CustomContainer title='Loading product' />;
   }
   if (error) {
     return <CustomContainer title={error} />;
   }
-  if (data?.length < 1) {
+  if (products?.length < 1) {
     <CustomContainer title='No products found'></CustomContainer>;
   }
 
   return (
     <ProductDashboard>
-      {data &&
-        data.map((product: IProduct) => {
+      {products &&
+        products.map((product: IProduct) => {
           return <Product product={product} key={product.id} />;
         })}
     </ProductDashboard>

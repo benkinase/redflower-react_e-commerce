@@ -67,7 +67,7 @@ export const Auth: FC = () => {
                     <React.Fragment>
                       <Wrapper className='email'>
                         {errors.email && touched.email && (
-                          <Span color='var(--nice-red)'>{errors.email}</Span>
+                          <Span color='var(--error-red)'>{errors.email}</Span>
                         )}
                         <Input
                           name='email'
@@ -83,7 +83,7 @@ export const Auth: FC = () => {
                   )}
                   <Wrapper className='username'>
                     {errors.username && touched.username && (
-                      <Span color='var(--nice-red)'>{errors.username}</Span>
+                      <Span color='var(--error-red)'>{errors.username}</Span>
                     )}
                     <Input
                       name='username'
@@ -97,7 +97,7 @@ export const Auth: FC = () => {
                   </Wrapper>
                   <Wrapper className='password'>
                     {errors.password && touched.password && (
-                      <Span color='var(--nice-red)'>{errors.password}</Span>
+                      <Span color='var(--error-red)'>{errors.password}</Span>
                     )}
                     <Input
                       name='password'
@@ -117,7 +117,7 @@ export const Auth: FC = () => {
                   {isSignup && (
                     <Wrapper className='password'>
                       {errors.password2 && touched.password2 && (
-                        <Span color='var(--nice-red)'>{errors.password2}</Span>
+                        <Span color='var(--error-red)'>{errors.password2}</Span>
                       )}
                       <Input
                         name='password2'
