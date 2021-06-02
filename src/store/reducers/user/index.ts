@@ -12,7 +12,7 @@ const initialState: UserState = {
 };
 
 export const loginReducer = (
-  state: typeof initialState = initialState,
+  state: UserState = initialState,
   { type, payload }: any
 ) => {
   switch (type) {

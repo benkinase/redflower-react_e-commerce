@@ -28,6 +28,7 @@ const increaseCartItem = (id: number) => (dispatch: any) => {
 const clearCart = () => (dispatch: any) => {
   dispatch({ type: Action.CLEAR_CART });
 };
+
 const getItemTotal = (item: ICart) => {
   try {
     let quantity = item.count;
@@ -39,22 +40,14 @@ const getItemTotal = (item: ICart) => {
   }
 };
 function cartTotalLength(cartItems: ICart[]): any {
-  try {
-    return cartItems?.reduce((acc: any, curVal: any) => {
-      return (acc += curVal.quantity);
-    }, 0);
-  } catch (error) {
-    console.log(error.message);
-  }
+  return cartItems?.reduce((acc: any, curVal: any) => {
+    return (acc += curVal.quantity);
+  }, 0);
 }
 function cartTotalPrice(cartItems: ICart[]): any {
-  try {
-    return cartItems?.reduce((acc: any, curVal: any) => {
-      return (acc += curVal.price * curVal.count);
-    }, 0);
-  } catch (error) {
-    console.log(error.message);
-  }
+  return cartItems?.reduce((acc: any, curVal: any) => {
+    return (acc += curVal.price * curVal.count);
+  }, 0);
 }
 
 export {

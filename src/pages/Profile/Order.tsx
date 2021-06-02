@@ -1,21 +1,14 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { removeOrder } from "../../store/actions";
+import { removeOrder, getOrderItemTotal } from "../../store/actions";
 import { Wrapper, Paragraph } from "../../components";
-import { OrderItem } from "../../types";
+import { IOrder, OrderItem } from "../../types";
 
 type OrderProps = {
-  order: any;
+  order: IOrder;
 };
 export const Order = ({ order }: OrderProps) => {
-  const getItemTotal = (item: any) => {
-    try {
-      return item.quantity * item.product.price;
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
   const dispatch = useDispatch();
 
   const handleOrderRemoval = (id: number) => {
@@ -58,7 +51,7 @@ export const Order = ({ order }: OrderProps) => {
                 <td>{item.product.name}</td>
                 <td>€{item.product.price}</td>
                 <td>{item.quantity}</td>
-                <td>€{getItemTotal(item)}</td>
+                <td>€{getOrderItemTotal(item)}</td>
               </tr>
             ))}
           </tbody>
@@ -69,8 +62,10 @@ export const Order = ({ order }: OrderProps) => {
 };
 const OrderContainer = styled.div`
   width: 100%;
-  box-shadow: var(--lightShadow);
+  //box-shadow: var(--lightShadow);
+  box-shadow: 2px 2px 2px 2px rgba(234, 220, 212, 1);
   padding: 5px;
+  margin-bottom: 10px;
 
   .single__order__header {
     display: flex;

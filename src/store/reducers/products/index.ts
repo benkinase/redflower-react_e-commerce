@@ -1,5 +1,5 @@
 import { actionTypes as Action } from "../../actionTypes";
-import { ProductState, ProductAction } from "../../../types";
+import { ProductState, ProductsAction } from "../../../types";
 
 const initialState: ProductState = {
   data: [],
@@ -8,8 +8,8 @@ const initialState: ProductState = {
 };
 
 export const productReducer = (
-  state: typeof initialState = initialState,
-  action: ProductAction
+  state: ProductState = initialState,
+  action: ProductsAction
 ) => {
   switch (action.type) {
     case Action.GET_PRODUCTS_REQUEST:

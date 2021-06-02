@@ -11,10 +11,14 @@ import {
 } from "../../components";
 import { logoutUser, fetchOrders } from "../../store/actions";
 import { Order } from "./Order";
+import { IOrder, OrderState } from "../../types";
+import { RootState } from "../../store/reducers";
 
 export const Profile = () => {
-  const { orders, loading, error } = useSelector((state: any) => state.order);
-
+  const { orders, loading, error }: OrderState = useSelector(
+    (state: RootState) => state.order
+  );
+  console.log(orders);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -27,8 +31,8 @@ export const Profile = () => {
     dispatch(fetchOrders());
   }, [dispatch]);
 
-  function getOrderLength(orders: any) {
-    return orders?.items?.reduce((acc: any, curVal: any) => {
+  function getOrderLength(orders: IOrder[]) {
+    return orders?.reduce((acc: any, curVal: any) => {
       return (acc += curVal.quantity);
     }, 0);
   }
@@ -71,7 +75,7 @@ export const Profile = () => {
           <h3 className='subtitle'>My orders{getOrderLength(orders)}</h3>
           <Divider />
           {orders?.length < 1 && <CustomContainer title='No orders found!' />}
-          {orders?.map((order: any) => {
+          {orders?.map((order) => {
             return <Order order={order} key={order.id} />;
           })}
         </Wrapper>

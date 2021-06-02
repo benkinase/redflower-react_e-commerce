@@ -2,18 +2,13 @@ import { actionTypes as Action } from "../../actionTypes";
 import { OrderState } from "../../../types";
 
 const initialState: OrderState = {
-  id: null,
   orders: [],
-  paid_amount: null,
   loading: false,
   error: "",
   message: "",
 };
 
-export const orderReducer = (
-  state: typeof initialState = initialState,
-  action: any
-) => {
+export const orderReducer = (state: OrderState = initialState, action: any) => {
   switch (action.type) {
     case Action.GET_ORDERS_REQUEST:
       return { loading: true };

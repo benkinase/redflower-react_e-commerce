@@ -1,6 +1,7 @@
 import { actionTypes as Action } from "../../actionTypes";
 import { axiosAPI } from "../../../utils/credentials";
 import { AxiosResponse } from "axios";
+import { OrderItem } from "../../../types";
 // GET Orders
 
 export const fetchOrders = () => async (dispatch: any) => {
@@ -39,4 +40,7 @@ export const removeOrder = (id: number) => async (dispatch: any) => {
       payload: error.message,
     });
   }
+};
+export const getOrderItemTotal = (item: OrderItem) => {
+  return item.quantity * Number(item.product.price);
 };

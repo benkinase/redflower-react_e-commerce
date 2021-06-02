@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store/reducers";
 import {
   ProductDashboard,
   Wrapper,
@@ -9,7 +10,7 @@ import {
   ProductsResult,
 } from "../../components";
 import { Product } from "../Product";
-import { IProduct } from "../../types";
+import { Categories } from "../../types";
 import { fetchCategories } from "../../store/actions";
 
 // prouct category param
@@ -17,13 +18,14 @@ export type CategoriesParams = {
   cat_slug: string;
 };
 export const Category = () => {
-  const { data, name, error, loading } = useSelector(
-    (state: any) => state.categories
+  const { data, name, error, loading }: Categories = useSelector(
+    (state: RootState) => state.categories
   );
   const { cat_slug } = useParams<CategoriesParams>();
 
   const dispatch = useDispatch();
-  React.useEffect(() => {
+
+  useEffect(() => {
     dispatch(fetchCategories(cat_slug));
   }, [cat_slug, dispatch]);
 
@@ -52,7 +54,7 @@ export const Category = () => {
         </Wrapper>
         <ProductDashboard>
           {data &&
-            data.map((product: IProduct) => {
+            data.map((product) => {
               return <Product product={product} key={product.id} />;
             })}
         </ProductDashboard>

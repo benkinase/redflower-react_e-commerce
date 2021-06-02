@@ -3,11 +3,14 @@ import { fetchDjangoProducts } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
 import { ProductDashboard, CustomContainer } from "../../components";
-import { IProduct } from "../../types";
+import { ProductState } from "../../types";
 import { Product } from "../Product";
+import { RootState } from "../../store/reducers";
 
 export const Products: FC = () => {
-  const { data, loading, error } = useSelector((state: any) => state.products);
+  const { data, loading, error }: ProductState = useSelector(
+    (state: RootState) => state.products
+  );
 
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -28,7 +31,7 @@ export const Products: FC = () => {
   return (
     <ProductDashboard>
       {data &&
-        data.map((product: IProduct) => {
+        data.map((product) => {
           return <Product product={product} key={product.id} />;
         })}
     </ProductDashboard>

@@ -16,4 +16,4 @@ export {
   multipQtyChange,
 } from "./cart";
 export { login, register, loadUser, logoutUser } from "./user";
-export { fetchOrders, removeOrder } from "./order";
+export { fetchOrders, removeOrder, getOrderItemTotal } from "./order";

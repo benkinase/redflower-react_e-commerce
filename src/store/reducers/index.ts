@@ -3,7 +3,8 @@ import { productReducer } from "./products";
 import { cartReducer } from "./cart";
 import { detailReducer } from "./product";
 import { registerReducer, loginReducer } from "./user";
-import { catReducer, searchReducer } from "./categories";
+import { catReducer } from "./categories";
+import { searchReducer } from "./search";
 import { orderReducer } from "./order";
 
 // combine reducers for scalability
@@ -19,4 +20,4 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-export type AppState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof rootReducer>;

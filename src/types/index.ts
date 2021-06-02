@@ -81,23 +81,35 @@ export type CheckoutItem = {
   quantity: number;
   price: number;
 };
-
-// order state
-export interface OrderState {
-  id: number | null;
-  paid_amount?: number | null;
-  orders?: Array<any>;
-  loading: boolean;
-  error: string;
-  message?: string;
+export interface OrderUser {
+  address: string;
+  city: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  phone: string;
 }
-
-// singöe order
+// single order
 export type OrderItem = {
   price: number;
   product: IProduct;
   quantity: number;
 };
+export interface IOrder {
+  id: number;
+  user: OrderUser;
+  created_at: string;
+  paid_amount?: number | null;
+  items: OrderItem[];
+}
+// order state
+export interface OrderState {
+  orders: IOrder[];
+  loading: boolean;
+  error: string;
+  message?: string;
+}
+
 // cart state
 export interface CartState {
   cartItems: ICart[];
@@ -105,7 +117,7 @@ export interface CartState {
 }
 // product
 export interface ProductDetailsState {
-  product: {};
+  product: IProduct;
   loading: boolean;
   error: string;
 }
@@ -122,10 +134,32 @@ export type IProducts = {
 };
 
 // state action
-export type ProductAction = {
-  type: string;
-  payload: any;
-  product: IProduct;
-};
+// export type ProductsAction = {
+//   type: string;
+//   payload: any;
+//   product: IProduct;
+// };
 
-export type DispatchType = (args: ProductAction) => ProductAction;
+export enum ActionTypes {
+  GET_PRODUCTS_REQUEST = "GET_PRODUCTS_REQUEST",
+  GET_PRODUCTS_SUCCESS = "GET_PRODUCTS_SUCCESS",
+  GET_PRODUCTS_FAIL = "GET_PRODUCTS_FAIL",
+
+  GET_PRODUCT_REQUEST = "GET_PRODUCT_REQUEST",
+  GET_PRODUCT_SUCCESS = "GET_PRODUCT_SUCCESS",
+  GET_PRODUCT_FAIL = "GET_PRODUCT_FAIL",
+}
+export type ProductsAction =
+  | { type: ActionTypes.GET_PRODUCTS_REQUEST; payload: null }
+  | { type: ActionTypes.GET_PRODUCTS_SUCCESS; payload: IProduct[] }
+  | { type: ActionTypes.GET_PRODUCTS_FAIL; payload: string };
+
+export type ProductAction =
+  | {
+      type: ActionTypes.GET_PRODUCT_REQUEST;
+      payload: { cat_slug: string; prod_slug: string };
+    }
+  | { type: ActionTypes.GET_PRODUCT_SUCCESS; payload: IProduct }
+  | { type: ActionTypes.GET_PRODUCT_FAIL; payload: string };
+
+export type DispatchType = (args: ProductsAction) => ProductsAction;

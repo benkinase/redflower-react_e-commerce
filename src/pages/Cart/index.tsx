@@ -14,10 +14,13 @@ import {
   cartTotalPrice,
   clearCart,
 } from "../../store/actions";
-import { ICart } from "../../types";
+import { CartState, ICart } from "../../types";
+import { RootState } from "../../store/reducers";
 
 export const Cart = () => {
-  const { cartItems } = useSelector((state: any) => state.cart);
+  const { cartItems }: CartState = useSelector(
+    (state: RootState) => state.cart
+  );
 
   const dispatch = useDispatch();
 

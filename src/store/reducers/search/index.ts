@@ -1,33 +1,29 @@
 import { actionTypes as Action } from "../../actionTypes";
-import { Categories } from "../../../types";
+import { SearchProducts } from "../../../types";
 
-const initialState: Categories = {
+const initials: SearchProducts = {
   data: [],
-  name: "",
   loading: false,
   error: "",
 };
-
-export const catReducer = (
-  state: typeof initialState = initialState,
+export const searchReducer = (
+  state: SearchProducts = initials,
   action: any
 ) => {
   switch (action.type) {
-    case Action.GET_CATEGORIES_REQUEST:
+    case Action.GET_SEARCH_REQUEST:
       return { loading: true };
-    case Action.GET_CATEGORIES_SUCCESS:
+    case Action.GET_SEARCH_SUCCESS:
       return {
         loading: false,
-        data: action.payload.products,
-        name: action.payload.name,
+        data: action.payload,
       };
-    case Action.GET_CATEGORIES_FAIL:
+    case Action.GET_SEARCH_FAIL:
       return {
         ...state,
         loading: false,
         error: action.payload,
       };
-
     default:
       return state;
   }

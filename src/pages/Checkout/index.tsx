@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Wrapper,
@@ -8,15 +8,24 @@ import {
   ShippingContainer,
 } from "../../components";
 import { getItemTotal, cartTotalPrice, clearCart } from "../../store/actions";
-import { ICart, CheckoutItem, CheckoutProps } from "../../types";
+import {
+  ICart,
+  CheckoutItem,
+  CheckoutProps,
+  CartState,
+  UserState,
+} from "../../types";
 import { StripePayment } from "./Payment";
 import { axiosAPI, checkoutUser, payTypes } from "../../utils";
 import { useHistory } from "react-router-dom";
 import { AxiosResponse } from "axios";
+import { RootState } from "../../store/reducers";
 
 export const Checkout = () => {
-  const { cartItems } = useSelector((state: any) => state.cart);
-  const { token } = useSelector((state: any) => state.auth);
+  const { cartItems }: CartState = useSelector(
+    (state: RootState) => state.cart
+  );
+  const { token }: UserState = useSelector((state: RootState) => state.auth);
   // checkout user
   const [state, setState] = React.useState<CheckoutProps>({
     first_name: "",
@@ -29,12 +38,12 @@ export const Checkout = () => {
   });
 
   // Payment methods
-  const [payType, setPayType] = React.useState(payTypes[0].type);
+  const [payType, setPayType] = useState(payTypes[0].type);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
@@ -45,12 +54,13 @@ export const Checkout = () => {
 
   const handlePayment = async (token: any) => {
     const items: CheckoutItem[] = [];
+
     for (let i = 0; i < cartItems.length; i++) {
       const item = cartItems[i];
       const itemObj = {
         product: item.id,
         quantity: item.count,
-        price: item.price * item.count,
+        price: Number(item.price) * item.count,
       };
       items.push(itemObj);
     }
@@ -66,7 +76,7 @@ export const Checkout = () => {
       items: items,
       stripe_token: token.id,
     };
-    console.log("checkout", data);
+
     const res: AxiosResponse<any> = await axiosAPI.post(`/api/checkout/`, data);
     if (res.status === 201) {
       console.log(res);

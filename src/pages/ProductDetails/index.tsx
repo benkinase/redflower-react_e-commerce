@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 import { Dispatch } from "redux";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
@@ -14,23 +14,31 @@ import {
   CustomContainer,
 } from "../../components";
 
-import { ICart } from "../../types";
+import { ICart, ProductDetailsState } from "../../types";
+import { RootState } from "../../store/reducers";
 
 export type DetailsParams = {
   cat_slug: string;
   prod_slug: string;
 };
+export type Variants = {
+  newColor: string;
+  newSize: string;
+};
+const colors = ["red", "grey", "green", "blue"];
+const sizes = ["small", "medium", "large", "xlarge"];
+
 export function ProductDetails() {
   // destructuring params props
   const { cat_slug, prod_slug } = useParams<DetailsParams>();
   // get fetched product from state
-  const { product, loading, error } = useSelector(
-    (state: any) => state.product
+  const { product, loading, error }: ProductDetailsState = useSelector(
+    (state: RootState) => state.product
   );
-  const [currentItem, setItem] = useState<ICart | {}>(product);
-  const [variants, setVariants] = useState<{ color: string; size: string }>({
-    color: "",
-    size: "",
+  //const [newItem, setItem] = useState<ICart | {}>();
+  const [variants, setVariants] = useState<Variants>({
+    newColor: "",
+    newSize: "",
   });
 
   // dispatch to state
@@ -43,15 +51,16 @@ export function ProductDetails() {
 
   // add to cart
   const handleAddToCart = (item: ICart) => {
-    setItem({ ...item, color: variants.color });
-    console.log(item, currentItem);
+    // const { newSize, newColor } = variants;
+    // setItem({ ...item, color: newColor && newColor, size: newSize && newSize });
+    // console.log(item);
+    // console.log(newItem);
     dispatch(addToCart(item));
   };
-  const colors = ["red", "grey", "green", "blue"];
-  const sizes = ["small", "medium", "large", "xlarge"];
-  const handleChange = (e: any) => {
-    let { name, value } = e.target;
-    setVariants({ ...variants, [name]: value });
+
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const { id, value } = e.target;
+    setVariants({ ...variants, [id]: value });
   };
 
   if (loading) {
@@ -82,18 +91,30 @@ export function ProductDetails() {
           <Wrapper className='product__select'>
             <Wrapper className='control'>
               <Select
-                name='color'
-                value={variants.color}
+                id='newColor'
+                value={variants.newColor}
                 onChange={handleChange}
               >
                 {colors.map((color, index) => {
-                  return <option key={index}>{color}</option>;
+                  return (
+                    <option key={index} value={color}>
+                      {color}
+                    </option>
+                  );
                 })}
               </Select>
 
-              <Select name='size' value={variants.size} onChange={handleChange}>
+              <Select
+                id='newSize'
+                value={variants.newSize}
+                onChange={handleChange}
+              >
                 {sizes.map((size, index) => {
-                  return <option key={index}>{size}</option>;
+                  return (
+                    <option key={index} value={size}>
+                      {size}
+                    </option>
+                  );
                 })}
               </Select>
             </Wrapper>

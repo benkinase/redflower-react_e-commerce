@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-//import { useParams } from "react-router-dom";
 import {
   SearchBarContainer,
   CustomContainer,
@@ -11,9 +10,10 @@ import {
   ProductsResult,
 } from "../../components";
 
-import { IProduct } from "../../types";
+import { SearchProducts } from "../../types";
 import { Product } from "../Product";
 import { fetchSearchProducts } from "../../store/actions";
+import { RootState } from "../../store/reducers";
 
 export const SearchBar = () => {
   return (
@@ -39,24 +39,28 @@ export const SearchBar = () => {
 };
 
 export const Search = () => {
-  const { data, error, loading } = useSelector((state: any) => state.search);
+  const { data, error, loading }: SearchProducts = useSelector(
+    (state: RootState) => state.search
+  );
   const [localError, setLocalError] = useState<string | null>("");
   const [query, setQuery] = useState<string | null | undefined>("");
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    let uri = window.location.search.substring(1);
-    let params = new URLSearchParams(uri);
-    let currentQuery = params.get("query");
-    if (!currentQuery) setLocalError("Empty query");
-    if (currentQuery) {
-      setQuery(currentQuery);
-      dispatch(fetchSearchProducts(currentQuery));
+  useEffect(() => {
+    const uri = window.location.search.substring(1);
+    const params = new URLSearchParams(uri);
+    const currentQuery = params.get("query");
+
+    if (!currentQuery) {
+      setLocalError("enter a query to complete search");
     }
+
+    setQuery(currentQuery);
+    dispatch(fetchSearchProducts(currentQuery));
   }, [dispatch]);
 
   if (localError) {
-    const title = "Enter a query to complete search";
+    const title = localError;
     return (
       <CustomContainer title={title}>
         <StyledNavLink
@@ -65,7 +69,7 @@ export const Search = () => {
           padding='10px 20px'
           color='var(--nice-gray)'
         >
-          Back home
+          back home
         </StyledNavLink>
       </CustomContainer>
     );
@@ -96,7 +100,7 @@ export const Search = () => {
       <h3>Search term: {query}</h3>
       <ProductDashboard>
         {data &&
-          data.map((product: IProduct) => {
+          data.map((product) => {
             return <Product product={product} key={product.id} />;
           })}
       </ProductDashboard>

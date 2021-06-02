@@ -5,7 +5,7 @@
   padding-top: 20px;
   position: fixed;
   bottom: 0;
-  background-color: var(--nice-gray);
+  background-color: var(--dark-gray);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -19,8 +19,9 @@
   align-items: center;
 }
 .date {
-  color: var(--tertiary);
+  color: var(--nice-gray);
   font-weight: bold;
+  font-size: 15px;
 }
 ul {
   display: flex;
@@ -30,23 +31,21 @@ ul {
 ul li {
   list-style: none;
   cursor: pointer;
-  background-color: var(--nice-yellow);
+  background-color: var(--nice-gray);
   text-transform: capitalize;
   padding: 5px;
   font-weight: bold;
   margin-left: 3px;
   letter-spacing: 0.2px;
-  color: var(--tertiary);
 }
 ul li a {
-  color: var(--tertiary);
+  color: var(--dark-gray);
   text-decoration: none;
 }
+
 ul li a:hover {
-  color: var(--tertiary);
-}
-ul li:hover {
-  opacity: 0.8;
+  opacity: 0.9;
+  color: var(--secondary);
 }
 
 @media screen and (min-width: 768px) {

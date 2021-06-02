@@ -11,28 +11,33 @@ import {
   StyledModal,
 } from "../../components";
 import { SearchBar } from "../Search";
-import { ICart } from "../../types";
+import { CartState, ICart, UserState } from "../../types";
 import AppLogo from "../../utils/SVG/logo.svg";
+import { RootState } from "../../store/reducers";
 
 export function Navbar() {
-  const state = useSelector((state: any) => state.cart.cartItems);
-  const { token } = useSelector((state: any) => state.auth);
+  const { cartItems }: CartState = useSelector(
+    (state: RootState) => state.cart
+  );
+  const { token, username }: UserState = useSelector(
+    (state: RootState) => state.auth
+  );
+  // sidebar state
   const [isOpen, setOpen] = useState(false);
-
+  const toggleBar = useCallback(() => setOpen(!isOpen), [isOpen, setOpen]);
   const close = () => {
     setOpen(false);
   };
+  // category modal
   const [isModal, setModal] = useState(false);
 
   const toggleModal = () => {
     setModal((prevState) => !prevState);
   };
 
-  const toggleBar = useCallback(() => setOpen(!isOpen), [isOpen, setOpen]);
-
   return (
     <>
-      <Sidebar isOpen={isOpen} close={close} state={state} />
+      <Sidebar isOpen={isOpen} close={close} cartItems={cartItems} />
       <NavbarContainer>
         <Wrapper className='navbar'>
           <Wrapper className='nav__center'>
@@ -53,7 +58,7 @@ export function Navbar() {
             <Wrapper className='only_large_screen'>
               <StyledNavLink to='/cart' className='cart-link'>
                 <i className='fas fa-shopping-cart'></i>
-                <Span className='cart-value'>{state?.length}</Span>
+                <Span className='cart-value'>{cartItems?.length}</Span>
               </StyledNavLink>
               <ButtonR
                 border='1px solid var(--nice-gray)'
@@ -84,7 +89,7 @@ export function Navbar() {
                   radius='20px'
                   to='/profile'
                 >
-                  Account
+                  {username}
                 </StyledNavLink>
               )}
             </Wrapper>
@@ -98,10 +103,12 @@ export function Navbar() {
 type SideBarProps = {
   isOpen: boolean;
   close: () => void;
-  state: Array<ICart>;
+  cartItems: Array<ICart>;
 };
-const Sidebar: FC<SideBarProps> = ({ isOpen, state, close }) => {
-  const { token } = useSelector((state: any) => state.auth);
+const Sidebar: FC<SideBarProps> = ({ isOpen, cartItems, close }) => {
+  const { token, username }: UserState = useSelector(
+    (state: RootState) => state.auth
+  );
   let drawClass = "sidebar";
 
   if (isOpen) {
@@ -150,13 +157,13 @@ const Sidebar: FC<SideBarProps> = ({ isOpen, state, close }) => {
               padding='3px 15px'
               to='/profile'
             >
-              <span onClick={close}>Account</span>
+              <span onClick={close}>{username}</span>
             </StyledNavLink>
           )}
 
           <StyledNavLink to='/cart' className='cart-link'>
             <i className='fas fa-shopping-cart' onClick={close}>
-              <Span className='cart-value'>{state?.length}</Span>
+              <Span className='cart-value'>{cartItems?.length}</Span>
             </i>
           </StyledNavLink>
         </Wrapper>
