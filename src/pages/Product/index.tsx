@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useSelector } from "react-redux";
 import { addToCart } from "../../store/actions/cart";
 import {
   ProductContainer,
@@ -8,17 +9,25 @@ import {
   Wrapper,
   StyledLink,
 } from "../../components";
-import { ICart, IProduct } from "../../types";
+import { ICart, IProduct, CartState } from "../../types";
 import { useDispatch } from "react-redux";
+import { RootState } from "../../store/reducers";
 
 type ProductProps = {
   product: IProduct;
 };
 export const Product: FC<ProductProps> = ({ product }) => {
+  const { cartItems }: CartState = useSelector(
+    (state: RootState) => state.cart
+  );
   const dispatch = useDispatch();
 
   const handleAddToCart = (item: ICart) => {
     dispatch(addToCart(item));
+  };
+
+  const inCart = (product: IProduct) => {
+    return cartItems.some((item) => item.id === product.id);
   };
   return (
     <ProductContainer>
@@ -40,7 +49,7 @@ export const Product: FC<ProductProps> = ({ product }) => {
             bg='var(--nice-yellow)'
             onClick={() => handleAddToCart(product)}
           >
-            Add to cart
+            {inCart(product) ? "Item in cart" : "Add to cart"}
           </Button>
         </Wrapper>
       </Wrapper>

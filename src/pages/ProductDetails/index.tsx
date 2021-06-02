@@ -14,7 +14,7 @@ import {
   CustomContainer,
 } from "../../components";
 
-import { ICart, ProductDetailsState } from "../../types";
+import { ICart, CartState, IProduct, ProductDetailsState } from "../../types";
 import { RootState } from "../../store/reducers";
 
 export type DetailsParams = {
@@ -29,6 +29,9 @@ const colors = ["red", "grey", "green", "blue"];
 const sizes = ["small", "medium", "large", "xlarge"];
 
 export function ProductDetails() {
+  const { cartItems }: CartState = useSelector(
+    (state: RootState) => state.cart
+  );
   // destructuring params props
   const { cat_slug, prod_slug } = useParams<DetailsParams>();
   // get fetched product from state
@@ -57,7 +60,9 @@ export function ProductDetails() {
     // console.log(newItem);
     dispatch(addToCart(item));
   };
-
+  const inCart = (product: IProduct) => {
+    return cartItems.some((item) => item.id === product.id);
+  };
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { id, value } = e.target;
     setVariants({ ...variants, [id]: value });
@@ -121,7 +126,7 @@ export function ProductDetails() {
           </Wrapper>
           <Wrapper className='btn-container'>
             <Button onClick={() => handleAddToCart(product)}>
-              add to cart
+              {inCart(product) ? "Item in cart" : "Add to cart"}
             </Button>
             <StyledLink to='/'>
               <Button>back to home</Button>
