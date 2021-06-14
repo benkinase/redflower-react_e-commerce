@@ -123,14 +123,10 @@ export interface ProductDetailsState {
 }
 
 // global state
-export type ProductState = {
+export type ProductsState = {
   data: IProduct[];
   loading: boolean;
   error: string;
-};
-// global state
-export type IProducts = {
-  product: IProduct;
 };
 
 // state action

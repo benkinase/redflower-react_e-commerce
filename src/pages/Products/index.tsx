@@ -3,12 +3,12 @@ import { fetchDjangoProducts } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
 import { ProductDashboard, CustomContainer } from "../../components";
-import { ProductState } from "../../types";
+import { ProductsState } from "../../types";
 import { Product } from "../Product";
 import { RootState } from "../../store/reducers";
 
 export const Products: FC = () => {
-  const { data, loading, error }: ProductState = useSelector(
+  const { data, loading, error }: ProductsState = useSelector(
     (state: RootState) => state.products
   );
 
@@ -25,7 +25,7 @@ export const Products: FC = () => {
     return <CustomContainer title={error} />;
   }
   if (data?.length < 1) {
-    <CustomContainer title='No products found'></CustomContainer>;
+    <CustomContainer title='No products found' />;
   }
 
   return (

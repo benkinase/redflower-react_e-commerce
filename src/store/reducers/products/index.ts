@@ -1,14 +1,14 @@
 import { actionTypes as Action } from "../../actionTypes";
-import { ProductState, ProductsAction } from "../../../types";
+import { ProductsState, ProductsAction } from "../../../types";
 
-const initialState: ProductState = {
+const initialState: ProductsState = {
   data: [],
   loading: false,
   error: "",
 };
 
 export const productReducer = (
-  state: ProductState = initialState,
+  state: ProductsState = initialState,
   action: ProductsAction
 ) => {
   switch (action.type) {

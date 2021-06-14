@@ -29,7 +29,7 @@ export const orderReducer = (state: OrderState = initialState, action: any) => {
       return {
         ...state,
         loading: false,
-        orders: state?.orders?.filter((i) => i.id !== action.payload),
+        orders: state?.orders?.filter((order) => order.id !== action.payload),
       };
 
     case Action.DELETE_ORDER_FAIL:
