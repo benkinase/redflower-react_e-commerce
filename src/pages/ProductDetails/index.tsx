@@ -21,10 +21,7 @@ export type DetailsParams = {
   cat_slug: string;
   prod_slug: string;
 };
-export type Variants = {
-  newColor: string;
-  newSize: string;
-};
+
 const colors = ["red", "grey", "green", "blue"];
 const sizes = ["small", "medium", "large", "xlarge"];
 
@@ -39,11 +36,11 @@ export function ProductDetails() {
     (state: RootState) => state.product
   );
   //const [newItem, setItem] = useState<ICart | {}>();
-  const [variants, setVariants] = useState<Variants>({
-    newColor: "",
-    newSize: "",
-  });
+  const [newColor, setColor] = useState<string>("");
+  const [newSize, setSize] = useState<string>("");
 
+  const [newProduct, setNewProduct] = useState<IProduct>({ ...product });
+  console.log(newColor);
   // dispatch to state
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -54,52 +51,70 @@ export function ProductDetails() {
 
   // add to cart
   const handleAddToCart = (item: ICart) => {
-    // const { newSize, newColor } = variants;
-    // setItem({ ...item, color: newColor && newColor, size: newSize && newSize });
-    // console.log(item);
-    // console.log(newItem);
-    dispatch(addToCart(item));
+    const newItem = {
+      ...item,
+      color: newColor && newColor,
+      size: newSize && newSize,
+    };
+    dispatch(addToCart(newItem));
   };
   const inCart = (product: IProduct) => {
     return cartItems.some((item) => item.id === product.id);
   };
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const { id, value } = e.target;
-    setVariants({ ...variants, [id]: value });
+  const handleSize = (e: ChangeEvent<HTMLSelectElement>) => {
+    const { value } = e.target;
+    setSize(value);
+    setNewProduct({
+      ...newProduct,
+      size: newSize && newSize,
+    });
+  };
+  const handleColor = (e: ChangeEvent<HTMLSelectElement>) => {
+    const { value } = e.target;
+    setColor(value);
+    setNewProduct({
+      ...newProduct,
+      color: newColor && newColor,
+    });
   };
 
   if (loading) {
-    return <CustomContainer title='Product loading' />;
+    return <CustomContainer title="Product loading" />;
   }
   if (error) {
     return <CustomContainer title={error} />;
   }
   return (
     <ProductDetail>
-      <Wrapper className='product__detail__page'>
-        <Wrapper className='product__top'>
-          <ImageContainer height='55%' src={product && product.get_image} />
-          <h2 className='title'>{product && product.name}</h2>
-          <Paragraph>{product && product.description}</Paragraph>
+      <Wrapper className="product__detail__page">
+        <Wrapper className="product__top">
+          <ImageContainer height="55%" src={product.get_image} />
+          <h2 className="title">{product.name}</h2>
+          <Paragraph>{product.description}</Paragraph>
         </Wrapper>
 
-        <Wrapper className='product__bottom'>
-          <h3 className='subtitle'>Product Information</h3>
+        <Wrapper className="product__bottom">
+          <h3 className="subtitle">Product Information</h3>
           <Paragraph>
-            <strong>Price: </strong>€{product && product.price}
+            <strong>Price: </strong>
+            {product.price}
+          </Paragraph>
+          <Paragraph>
+            <strong>Color: </strong>
+            {newColor ? newColor : product.color}
+          </Paragraph>
+          <Paragraph>
+            <strong>Size: </strong>
+            {newSize ? newSize : product.size}
           </Paragraph>
           <Paragraph>
             <strong>Category: </strong>
-            {product && product.cat}
+            {product.cat}
           </Paragraph>
 
-          <Wrapper className='product__select'>
-            <Wrapper className='control'>
-              <Select
-                id='newColor'
-                value={variants.newColor}
-                onChange={handleChange}
-              >
+          <Wrapper className="product__select">
+            <Wrapper className="control">
+              <Select name="newColor" value={newColor} onChange={handleColor}>
                 {colors.map((color, index) => {
                   return (
                     <option key={index} value={color}>
@@ -109,11 +124,7 @@ export function ProductDetails() {
                 })}
               </Select>
 
-              <Select
-                id='newSize'
-                value={variants.newSize}
-                onChange={handleChange}
-              >
+              <Select name="newSize" value={newSize} onChange={handleSize}>
                 {sizes.map((size, index) => {
                   return (
                     <option key={index} value={size}>
@@ -124,11 +135,11 @@ export function ProductDetails() {
               </Select>
             </Wrapper>
           </Wrapper>
-          <Wrapper className='btn-container'>
-            <Button onClick={() => handleAddToCart(product)}>
-              {inCart(product) ? "Item in cart" : "Add to cart"}
+          <Wrapper className="btn-container">
+            <Button onClick={() => handleAddToCart(newProduct)}>
+              {inCart(newProduct) ? "Item in cart" : "Add to cart"}
             </Button>
-            <StyledLink to='/'>
+            <StyledLink to="/">
               <Button>back to home</Button>
             </StyledLink>
           </Wrapper>
