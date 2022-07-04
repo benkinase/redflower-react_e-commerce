@@ -19,13 +19,13 @@ export const Products: FC = () => {
   }, [dispatch]);
 
   if (loading) {
-    <CustomContainer title='Loading product' />;
+    <CustomContainer title="Loading product" />;
   }
   if (error) {
     return <CustomContainer title={error} />;
   }
   if (data?.length < 1) {
-    <CustomContainer title='No products found' />;
+    <CustomContainer title="No products found" />;
   }
 
   return (

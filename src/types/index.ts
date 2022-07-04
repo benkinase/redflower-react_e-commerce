@@ -40,6 +40,8 @@ export interface IProduct {
   cat: string;
   get_absolute_url: string;
   description: string;
+  color: string;
+  size: string;
   price: string;
   get_image: string;
   get_thumbnail: string;

@@ -1,8 +1,8 @@
 import axios from "axios";
 
-let API_URL = process.env.REACT_APP_DJANGO_URL_LIVE;
+const API_URL = process.env.REACT_APP_DJANGO_URL_LIVE;
 
-// GET TOKEN FROM LOCALSTORAGE
+// GET TOKEN FROM LOCAL STORAGE
 let pre_Token = localStorage.getItem("token");
 let token = pre_Token ? JSON.parse(pre_Token) : null;
 
